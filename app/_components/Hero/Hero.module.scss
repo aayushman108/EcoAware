@@ -111,7 +111,7 @@
 .decorItem {
   position: absolute;
   font-size: 4rem;
-  opacity: 0.6; // Increased opacity
+  opacity: 0.9;
   filter: blur(0px); // Sharper
   transition: transform 0.3s ease;
 
@@ -131,7 +131,7 @@
   }
 
   @include dark-mode {
-    opacity: 0.5;
+    opacity: 0.8;
   }
 
   @include max-md {

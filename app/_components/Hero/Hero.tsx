@@ -24,13 +24,15 @@ export default function Hero() {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
       // Animate background decorations
-      tl.from(
+      tl.fromTo(
         decorRef.current?.querySelectorAll(".decor-item") || [],
+        { scale: 0, opacity: 0 },
         {
-          scale: 0,
-          opacity: 0,
+          scale: 1,
+          opacity: 1,
           duration: 1.2,
           stagger: 0.1,
+          ease: "back.out(1.7)",
         },
         0,
       );
