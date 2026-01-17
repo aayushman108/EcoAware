@@ -146,16 +146,43 @@
 // VISUAL EFFECTS
 // ============================================
 
-@mixin glass-morphism($blur: 20px, $opacity: 0.1) {
+@mixin glass-morphism($blur: 16px, $opacity: 0.7) {
   background: rgba($color-white, $opacity);
   backdrop-filter: blur($blur);
   -webkit-backdrop-filter: blur($blur);
+  border: 1px solid rgba($color-white, 0.2);
 }
 
-@mixin glass-morphism-dark($blur: 20px, $opacity: 0.3) {
+@mixin glass-morphism-dark($blur: 16px, $opacity: 0.6) {
   background: rgba($color-dark-surface, $opacity);
   backdrop-filter: blur($blur);
   -webkit-backdrop-filter: blur($blur);
+  border: 1px solid rgba($color-white, 0.05);
+}
+
+@mixin glass-card {
+  @include glass-morphism(12px, 0.8);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  transition:
+    transform $transition-base $transition-smooth,
+    box-shadow $transition-base $transition-smooth,
+    border-color $transition-base;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.12);
+    border-color: rgba($color-primary-green, 0.3);
+  }
+
+  @include dark-mode {
+    @include glass-morphism-dark(12px, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+      border-color: rgba($color-primary-green, 0.3);
+    }
+  }
 }
 
 @mixin smooth-shadow {
@@ -227,9 +254,11 @@
 @mixin button-primary {
   @include button-base;
   background: $gradient-primary;
+  background-size: 200% auto;
   color: $color-white;
 
   &:hover:not(:disabled) {
+    background-position: right center;
     transform: translateY(-2px);
     box-shadow: $shadow-glow-green;
   }

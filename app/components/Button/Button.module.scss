@@ -46,31 +46,18 @@
 }
 
 // Primary Variant
+// Primary Variant
 .primary {
   background: $gradient-primary;
+  background-size: 200% auto;
   color: $color-white;
-  box-shadow: $shadow-sm;
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      135deg,
-      rgba($color-white, 0.2) 0%,
-      transparent 50%
-    );
-    opacity: 0;
-    transition: opacity $transition-fast;
-  }
+  box-shadow: $shadow-lg;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
   &:hover:not(:disabled) {
+    background-position: right center;
     transform: translateY(-2px);
     box-shadow: $shadow-glow-green;
-
-    &::before {
-      opacity: 1;
-    }
   }
 
   &:active:not(:disabled) {
@@ -82,10 +69,12 @@
 // Secondary Variant
 .secondary {
   background: $gradient-secondary;
+  background-size: 200% auto;
   color: $color-white;
-  box-shadow: $shadow-sm;
+  box-shadow: $shadow-lg;
 
   &:hover:not(:disabled) {
+    background-position: right center;
     transform: translateY(-2px);
     box-shadow: $shadow-glow-blue;
   }
@@ -97,13 +86,32 @@
 
 // Outline Variant
 .outline {
+  position: relative;
   background: transparent;
   color: var(--color-primary);
   border: 2px solid var(--color-primary);
+  overflow: hidden;
+  z-index: 1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform $transition-base $transition-smooth;
+    z-index: -1;
+  }
 
   &:hover:not(:disabled) {
-    background: var(--color-primary);
     color: $color-white;
+    border-color: transparent;
+    box-shadow: $shadow-glow-green;
+
+    &::before {
+      transform: scaleX(1);
+    }
   }
 }
 

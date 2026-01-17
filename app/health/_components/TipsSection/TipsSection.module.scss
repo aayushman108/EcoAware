@@ -1,6 +1,8 @@
 @use "../../../styles/variables" as *;
 @use "../../../styles/mixins" as *;
 
+// Trigger rebuild
+
 .tipsGrid {
   display: flex;
   flex-direction: column;

@@ -2,73 +2,88 @@
 // SASS VARIABLES - Design System Tokens
 // ============================================
 
-// Color Palette - Earth Tones & Nature Colors
-$color-primary-green: #2d6a4f;
-$color-primary-green-light: #40916c;
-$color-primary-green-dark: #1b4332;
-$color-primary-green-accent: #52b788;
+// Color Palette - Modern Nature & Vibrant Tones
+$color-primary-green: #10b981; // Emerald 500
+$color-primary-green-light: #34d399; // Emerald 400
+$color-primary-green-dark: #059669; // Emerald 600
+$color-primary-green-accent: #6ee7b7; // Emerald 300
+$color-primary-glow: rgba(16, 185, 129, 0.5);
 
-$color-secondary-blue: #0077b6;
-$color-secondary-blue-light: #00b4d8;
-$color-secondary-blue-dark: #023e8a;
+$color-secondary-blue: #0ea5e9; // Sky 500
+$color-secondary-blue-light: #38bdf8; // Sky 400
+$color-secondary-blue-dark: #0284c7; // Sky 600
+$color-secondary-glow: rgba(14, 165, 233, 0.5);
 
+$color-accent-purple: #8b5cf6; // Violet 500
+$color-accent-pink: #ec4899; // Pink 500
+$color-accent-orange: #f97316; // Orange 500
+$color-accent-yellow: #eab308; // Yellow 500
+$color-accent-coral: #e76f51; // Restored Coral
+
+// Earth Tones (Restored)
 $color-earth-brown: #8b5a2b;
 $color-earth-tan: #d4a373;
 $color-earth-cream: #fefae0;
 
-$color-accent-yellow: #ffc300;
-$color-accent-orange: #fb8500;
-$color-accent-coral: #e76f51;
-
 // Neutral Colors
 $color-white: #ffffff;
-$color-off-white: #f8f9fa;
-$color-gray-100: #f1f3f4;
-$color-gray-200: #e9ecef;
-$color-gray-300: #dee2e6;
-$color-gray-400: #ced4da;
-$color-gray-500: #adb5bd;
-$color-gray-600: #6c757d;
-$color-gray-700: #495057;
-$color-gray-800: #343a40;
-$color-gray-900: #212529;
-$color-black: #0a0a0a;
+$color-off-white: #fafafa;
+$color-gray-50: #f9fafb;
+$color-gray-100: #f3f4f6;
+$color-gray-200: #e5e7eb;
+$color-gray-300: #d1d5db;
+$color-gray-400: #9ca3af;
+$color-gray-500: #6b7280;
+$color-gray-600: #4b5563;
+$color-gray-700: #374151;
+$color-gray-800: #1f2937;
+$color-gray-900: #111827;
+$color-black: #030712;
 
 // Dark Mode Colors
-$color-dark-bg: #0f1419;
-$color-dark-surface: #1a1f26;
-$color-dark-surface-light: #252d38;
-$color-dark-border: #2f3b47;
-$color-dark-text: #e5e9ec;
-$color-dark-text-muted: #9aa5b1;
+$color-dark-bg: #0a0a0a;
+$color-dark-surface: #171717;
+$color-dark-surface-elevated: #262626;
+$color-dark-surface-light: #252d38; // Restored
+$color-dark-border: #404040;
+$color-dark-text: #f3f4f6;
+$color-dark-text-muted: #9ca3af;
 
 // Gradients
 $gradient-primary: linear-gradient(
   135deg,
   $color-primary-green 0%,
-  $color-primary-green-accent 100%
+  $color-secondary-blue 100%
+);
+$gradient-primary-hover: linear-gradient(
+  135deg,
+  $color-primary-green-light 0%,
+  $color-secondary-blue-light 100%
 );
 $gradient-secondary: linear-gradient(
   135deg,
-  $color-secondary-blue-dark 0%,
-  $color-secondary-blue-light 100%
+  $color-secondary-blue 0%,
+  $color-accent-purple 100%
+);
+$gradient-warm: linear-gradient(
+  135deg,
+  $color-accent-orange 0%,
+  $color-accent-pink 100%
+);
+$gradient-dark-card: linear-gradient(
+  145deg,
+  rgba(255, 255, 255, 0.05) 0%,
+  rgba(255, 255, 255, 0.01) 100%
+);
+$gradient-light-card: linear-gradient(
+  145deg,
+  rgba(255, 255, 255, 0.9) 0%,
+  rgba(255, 255, 255, 0.5) 100%
 );
 $gradient-earth: linear-gradient(
   135deg,
-  $color-earth-brown 0%,
-  $color-earth-tan 100%
-);
-$gradient-hero: linear-gradient(
-  180deg,
-  rgba($color-primary-green-dark, 0.9) 0%,
-  rgba($color-primary-green, 0.7) 50%,
-  transparent 100%
-);
-$gradient-dark-hero: linear-gradient(
-  180deg,
-  rgba($color-dark-bg, 0.95) 0%,
-  rgba($color-dark-surface, 0.8) 50%,
-  transparent 100%
+  $color-earth-tan 0%,
+  $color-earth-brown 100%
 );
 
 // Typography
@@ -98,6 +113,7 @@ $font-size-2xl: clamp(1.5rem, 1.25rem + 1.25vw, 2.25rem);
 $font-size-3xl: clamp(1.875rem, 1.5rem + 1.875vw, 3rem);
 $font-size-4xl: clamp(2.25rem, 1.75rem + 2.5vw, 4rem);
 $font-size-5xl: clamp(3rem, 2rem + 5vw, 6rem);
+$font-size-6xl: clamp(3.75rem, 3rem + 6vw, 7.5rem);
 
 // Font Weights
 $font-weight-light: 300;
@@ -155,8 +171,12 @@ $shadow-xl:
   0 10px 10px -5px rgba(0, 0, 0, 0.04);
 $shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 $shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
-$shadow-glow-green: 0 0 40px rgba($color-primary-green-accent, 0.3);
-$shadow-glow-blue: 0 0 40px rgba($color-secondary-blue-light, 0.3);
+$shadow-glow-green:
+  0 0 20px rgba(16, 185, 129, 0.4),
+  0 0 40px rgba(16, 185, 129, 0.2);
+$shadow-glow-blue:
+  0 0 20px rgba(14, 165, 233, 0.4),
+  0 0 40px rgba(14, 165, 233, 0.2);
 
 // Transitions
 $transition-fast: 150ms ease;

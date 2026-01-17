@@ -32,18 +32,20 @@
   @include flex-column;
   gap: $spacing-2;
   font-family: $font-family-heading;
-  font-size: $font-size-5xl;
+  font-size: $font-size-6xl; // Larger size
   font-weight: $font-weight-extrabold;
-  line-height: 1.1;
+  line-height: 1.05;
   margin-bottom: $spacing-8;
+  letter-spacing: -0.03em;
 
   @include max-md {
-    font-size: clamp(2rem, 8vw, 3.5rem);
+    font-size: clamp(2.5rem, 10vw, 4rem);
   }
 }
 
 .highlightLine {
   color: var(--color-primary);
+  text-shadow: 0 0 30px rgba($color-primary-green, 0.2);
 }
 
 .normalLine {
@@ -51,7 +53,27 @@
 }
 
 .gradientLine {
-  @include text-gradient($gradient-primary);
+  @include text-gradient(
+    linear-gradient(
+      135deg,
+      $color-primary-green 0%,
+      $color-secondary-blue 50%,
+      $color-accent-purple 100%
+    )
+  );
+  position: relative;
+  display: inline-block;
+
+  // Subtle glow
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    filter: blur(20px);
+    opacity: 0.3;
+    z-index: -1;
+  }
 }
 
 // Subtitle
@@ -59,11 +81,13 @@
   font-size: $font-size-xl;
   color: var(--color-text-muted);
   line-height: $line-height-relaxed;
-  max-width: 650px;
-  margin: 0 auto $spacing-10;
+  max-width: 700px;
+  margin: 0 auto $spacing-12;
+  font-weight: $font-weight-medium;
 
   @include max-md {
     font-size: $font-size-lg;
+    margin-bottom: $spacing-8;
   }
 }
 
@@ -81,59 +105,78 @@
   inset: 0;
   pointer-events: none;
   overflow: hidden;
+  z-index: 0;
 }
 
 .decorItem {
   position: absolute;
-  font-size: 3rem;
-  opacity: 0.3;
-  filter: blur(0.5px);
+  font-size: 4rem;
+  opacity: 0.6; // Increased opacity
+  filter: blur(0px); // Sharper
+  transition: transform 0.3s ease;
+
+  // Add glass effect to emojis
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.2) 0%,
+      transparent 70%
+    );
+    z-index: -1;
+    filter: blur(5px);
+  }
 
   @include dark-mode {
-    opacity: 0.25;
+    opacity: 0.5;
   }
 
   @include max-md {
-    font-size: 2rem;
-    opacity: 0.2;
+    font-size: 2.5rem;
+    opacity: 0.4;
   }
 }
 
 .leaf1 {
   top: 15%;
   left: 10%;
-  font-size: 4rem;
+  font-size: 5rem;
+  transform: rotate(-15deg);
 }
 
 .leaf2 {
   top: 25%;
   right: 15%;
-  font-size: 3.5rem;
+  font-size: 4rem;
+  transform: rotate(15deg);
 }
 
 .heart {
   bottom: 30%;
   left: 15%;
-  font-size: 2.5rem;
+  font-size: 3rem;
 }
 
 .earth {
-  top: 40%;
+  top: 35%;
   right: 8%;
-  font-size: 5rem;
-  opacity: 0.2;
+  font-size: 6rem;
+  opacity: 0.4;
 }
 
 .sun {
-  top: 10%;
+  top: 8%;
   right: 30%;
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 .water {
   bottom: 25%;
   right: 20%;
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 
 // Gradient orbs
@@ -141,18 +184,25 @@
   position: absolute;
   top: -20%;
   right: -10%;
-  width: 600px;
-  height: 600px;
+  width: 800px;
+  height: 800px;
   border-radius: 50%;
   background: radial-gradient(
     circle,
     rgba($color-primary-green-accent, 0.15) 0%,
+    rgba($color-primary-green, 0.05) 40%,
     transparent 70%
   );
-  filter: blur(60px);
+  filter: blur(80px);
+  animation: pulse 8s ease-in-out infinite alternate;
 
   @include dark-mode {
-    opacity: 0.6;
+    opacity: 0.4;
+    background: radial-gradient(
+      circle,
+      rgba($color-primary-green, 0.2) 0%,
+      transparent 70%
+    );
   }
 }
 
@@ -160,18 +210,25 @@
   position: absolute;
   bottom: -20%;
   left: -10%;
-  width: 500px;
-  height: 500px;
+  width: 700px;
+  height: 700px;
   border-radius: 50%;
   background: radial-gradient(
     circle,
     rgba($color-secondary-blue-light, 0.12) 0%,
+    rgba($color-secondary-blue, 0.05) 40%,
     transparent 70%
   );
-  filter: blur(60px);
+  filter: blur(80px);
+  animation: pulse 10s ease-in-out infinite alternate-reverse;
 
   @include dark-mode {
-    opacity: 0.5;
+    opacity: 0.3;
+    background: radial-gradient(
+      circle,
+      rgba($color-secondary-blue, 0.2) 0%,
+      transparent 70%
+    );
   }
 }
 

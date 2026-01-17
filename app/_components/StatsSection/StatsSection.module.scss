@@ -4,7 +4,12 @@
 .statsSection {
   position: relative;
   padding: $spacing-24 0;
-  background: $color-dark-bg;
+  // Use a dark gradient background for contrast
+  background: radial-gradient(
+    circle at center,
+    $color-dark-bg 0%,
+    #000000 100%
+  );
   overflow: hidden;
 }
 
@@ -60,66 +65,94 @@
   }
 }
 
+.bgPattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  background-image: radial-gradient($color-white 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+}
+
 .statItem {
   @include flex-column;
   align-items: center;
   gap: $spacing-3;
   padding: $spacing-8;
-  background: $color-dark-surface;
+  @include glass-morphism-dark(12px, 0.4); // Dark glass
   border-radius: $radius-2xl;
-  border: 1px solid $color-dark-border;
   text-align: center;
   transition: all $transition-base $transition-smooth;
+  position: relative;
+  overflow: hidden;
+
+  // Hover effect glow
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at 50% 0%,
+      rgba($color-primary-green, 0.2),
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity $transition-base;
+  }
 
   &:hover {
-    transform: translateY(-6px);
-    background: $color-dark-surface-light;
-    border-color: rgba($color-primary-green-accent, 0.3);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    border-color: rgba($color-primary-green, 0.3);
+
+    &::after {
+      opacity: 1;
+    }
 
     .icon {
-      transform: scale(1.1);
+      transform: scale(1.1) rotate(5deg);
     }
   }
 }
 
 .icon {
-  font-size: 2.5rem;
+  font-size: 3rem;
   margin-bottom: $spacing-2;
-  transition: transform $transition-base;
+  transition: transform $transition-base $transition-smooth;
+  z-index: 1;
 }
 
 .valueWrapper {
   display: flex;
   align-items: baseline;
   gap: $spacing-1;
+  position: relative;
+  z-index: 1;
 }
 
 .value {
   font-family: $font-family-heading;
-  font-size: $font-size-4xl;
+  font-size: $font-size-5xl;
   font-weight: $font-weight-extrabold;
-  color: $color-white;
+  // Gradient Text
+  @include text-gradient(
+    linear-gradient(to right, $color-white, $color-gray-400)
+  );
   line-height: 1;
 }
 
 .suffix {
-  font-size: $font-size-2xl;
+  font-size: $font-size-3xl;
   font-weight: $font-weight-bold;
   color: $color-primary-green-accent;
+  text-shadow: 0 0 20px rgba($color-primary-green, 0.4);
 }
 
 .label {
-  font-size: $font-size-sm;
+  font-size: $font-size-base; // slightly larger
   color: $color-dark-text-muted;
   line-height: $line-height-snug;
-  max-width: 160px;
-}
-
-// Background decoration
-.bgPattern {
-  position: absolute;
-  inset: 0;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2352b788' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  max-width: 180px;
+  z-index: 1;
+  font-weight: $font-weight-medium;
 }
