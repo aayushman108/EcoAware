@@ -133,14 +133,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <div className={styles.scrollIndicator} aria-hidden="true">
-        <span className={styles.scrollText}>Scroll to explore</span>
-        <div className={styles.scrollMouse}>
-          <div className={styles.scrollWheel} />
-        </div>
-      </div>
     </section>
   );
 }
