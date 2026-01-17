@@ -1,0 +1,164 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.form {
+  background: var(--color-surface);
+  border-radius: $radius-2xl;
+  padding: $spacing-10;
+  box-shadow: $shadow-lg;
+  border: 1px solid var(--color-border);
+
+  @include dark-mode {
+    background: $color-dark-surface;
+    border-color: $color-dark-border;
+  }
+
+  @include max-sm {
+    padding: $spacing-6;
+  }
+}
+
+.formTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: var(--color-text);
+  margin-bottom: $spacing-2;
+}
+
+.formDescription {
+  font-size: $font-size-base;
+  color: var(--color-text-muted);
+  margin-bottom: $spacing-8;
+}
+
+.successMessage {
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+  padding: $spacing-4;
+  background: rgba($color-primary-green, 0.1);
+  color: $color-primary-green;
+  border-radius: $radius-lg;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  margin-bottom: $spacing-6;
+
+  @include dark-mode {
+    background: rgba($color-primary-green-accent, 0.15);
+    color: $color-primary-green-accent;
+  }
+}
+
+.successIcon {
+  @include flex-center;
+  width: 24px;
+  height: 24px;
+  border-radius: $radius-full;
+  background: $color-primary-green;
+  color: $color-white;
+  font-size: 0.75rem;
+  font-weight: $font-weight-bold;
+  flex-shrink: 0;
+
+  @include dark-mode {
+    background: $color-primary-green-accent;
+  }
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-6;
+  margin-bottom: $spacing-6;
+
+  @include max-sm {
+    grid-template-columns: 1fr;
+  }
+}
+
+.formGroup {
+  @include flex-column;
+  gap: $spacing-2;
+  margin-bottom: $spacing-6;
+
+  &:last-of-type {
+    margin-bottom: $spacing-8;
+  }
+}
+
+.label {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: var(--color-text);
+}
+
+.required {
+  color: $color-accent-coral;
+}
+
+.input {
+  width: 100%;
+  padding: $spacing-4;
+  font-size: $font-size-base;
+  font-family: $font-family-primary;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 2px solid var(--color-border);
+  border-radius: $radius-lg;
+  transition: all $transition-fast;
+
+  @include dark-mode {
+    background: $color-dark-surface-light;
+    border-color: $color-dark-border;
+  }
+
+  &::placeholder {
+    color: var(--color-text-light);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba($color-primary-green, 0.1);
+  }
+
+  &:hover:not(:focus) {
+    border-color: var(--color-text-light);
+  }
+}
+
+.inputError {
+  border-color: $color-accent-coral !important;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($color-accent-coral, 0.1);
+  }
+}
+
+.select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236c757d' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right $spacing-4 center;
+  padding-right: $spacing-10;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.errorMessage {
+  font-size: $font-size-xs;
+  color: $color-accent-coral;
+  display: flex;
+  align-items: center;
+  gap: $spacing-1;
+
+  &::before {
+    content: "⚠";
+    font-size: 0.75rem;
+  }
+}

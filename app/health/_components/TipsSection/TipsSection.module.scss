@@ -1,0 +1,105 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.tipsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-6;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tipCard {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-6;
+  padding: $spacing-6;
+  background: var(--color-surface);
+  border-radius: $radius-xl;
+  border-left: 4px solid;
+  transition: all $transition-base $transition-smooth;
+
+  @include dark-mode {
+    background: $color-dark-surface;
+  }
+
+  &:hover {
+    transform: translateX(10px);
+    box-shadow: $shadow-lg;
+  }
+
+  @include max-sm {
+    flex-direction: column;
+    gap: $spacing-4;
+  }
+}
+
+.coral {
+  border-color: $color-accent-coral;
+
+  .number {
+    color: $color-accent-coral;
+  }
+}
+
+.blue {
+  border-color: $color-secondary-blue;
+
+  .number {
+    color: $color-secondary-blue;
+
+    @include dark-mode {
+      color: $color-secondary-blue-light;
+    }
+  }
+}
+
+.green {
+  border-color: $color-primary-green;
+
+  .number {
+    color: $color-primary-green;
+
+    @include dark-mode {
+      color: $color-primary-green-accent;
+    }
+  }
+}
+
+.earth {
+  border-color: $color-earth-brown;
+
+  .number {
+    color: $color-earth-brown;
+
+    @include dark-mode {
+      color: $color-earth-tan;
+    }
+  }
+}
+
+.number {
+  font-family: $font-family-heading;
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-extrabold;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.content {
+  flex: 1;
+}
+
+.title {
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: var(--color-text);
+  margin-bottom: $spacing-2;
+}
+
+.description {
+  font-size: $font-size-base;
+  color: var(--color-text-muted);
+  line-height: $line-height-relaxed;
+}

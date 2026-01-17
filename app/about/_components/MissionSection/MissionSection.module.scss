@@ -1,0 +1,160 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-8;
+  margin-bottom: $spacing-16;
+
+  @include max-md {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: var(--color-bg);
+  border-radius: $radius-2xl;
+  padding: $spacing-10;
+  border: 1px solid var(--color-border);
+  transition: all $transition-base $transition-smooth;
+
+  @include dark-mode {
+    background: $color-dark-surface-light;
+    border-color: $color-dark-border;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: $shadow-xl;
+
+    .iconWrapper {
+      transform: scale(1.1) rotate(5deg);
+    }
+  }
+}
+
+.mission {
+  border-top: 4px solid $color-primary-green;
+}
+
+.vision {
+  border-top: 4px solid $color-secondary-blue;
+}
+
+.iconWrapper {
+  @include flex-center;
+  width: 70px;
+  height: 70px;
+  border-radius: $radius-xl;
+  margin-bottom: $spacing-6;
+  transition: transform $transition-base;
+
+  .mission & {
+    background: rgba($color-primary-green, 0.1);
+
+    @include dark-mode {
+      background: rgba($color-primary-green-accent, 0.15);
+    }
+  }
+
+  .vision & {
+    background: rgba($color-secondary-blue, 0.1);
+
+    @include dark-mode {
+      background: rgba($color-secondary-blue-light, 0.15);
+    }
+  }
+}
+
+.icon {
+  font-size: 2rem;
+}
+
+.title {
+  font-family: $font-family-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: var(--color-text);
+  margin-bottom: $spacing-4;
+}
+
+.description {
+  font-size: $font-size-base;
+  color: var(--color-text-muted);
+  line-height: $line-height-relaxed;
+  margin-bottom: $spacing-6;
+}
+
+.points {
+  list-style: none;
+  @include flex-column;
+  gap: $spacing-3;
+}
+
+.points li {
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+  font-size: $font-size-sm;
+  color: var(--color-text);
+
+  &::before {
+    content: "✓";
+    @include flex-center;
+    width: 24px;
+    height: 24px;
+    border-radius: $radius-full;
+    font-size: 0.75rem;
+    font-weight: $font-weight-bold;
+    flex-shrink: 0;
+  }
+
+  .mission &::before {
+    background: rgba($color-primary-green, 0.1);
+    color: $color-primary-green;
+
+    @include dark-mode {
+      color: $color-primary-green-accent;
+    }
+  }
+
+  .vision &::before {
+    background: rgba($color-secondary-blue, 0.1);
+    color: $color-secondary-blue;
+
+    @include dark-mode {
+      color: $color-secondary-blue-light;
+    }
+  }
+}
+
+// Purpose
+.purpose {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: $spacing-12;
+  background: var(--color-bg);
+  border-radius: $radius-2xl;
+  border: 1px solid var(--color-border);
+
+  @include dark-mode {
+    background: $color-dark-surface-light;
+    border-color: $color-dark-border;
+  }
+}
+
+.purposeTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: var(--color-text);
+  margin-bottom: $spacing-4;
+}
+
+.purposeText {
+  font-size: $font-size-lg;
+  color: var(--color-text-muted);
+  line-height: $line-height-relaxed;
+}

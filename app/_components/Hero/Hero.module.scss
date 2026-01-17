@@ -1,0 +1,244 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  @include flex-center;
+  overflow: hidden;
+  padding-top: var(--header-height);
+  background: var(--color-bg);
+
+  @include dark-mode {
+    background: $color-dark-bg;
+  }
+}
+
+.container {
+  @include container;
+  position: relative;
+  z-index: 2;
+}
+
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  padding: $spacing-8 0;
+}
+
+// Headline
+.headline {
+  @include flex-column;
+  gap: $spacing-2;
+  font-family: $font-family-heading;
+  font-size: $font-size-5xl;
+  font-weight: $font-weight-extrabold;
+  line-height: 1.1;
+  margin-bottom: $spacing-8;
+
+  @include max-md {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+  }
+}
+
+.highlightLine {
+  color: var(--color-primary);
+}
+
+.normalLine {
+  color: var(--color-text);
+}
+
+.gradientLine {
+  @include text-gradient($gradient-primary);
+}
+
+// Subtitle
+.subtitle {
+  font-size: $font-size-xl;
+  color: var(--color-text-muted);
+  line-height: $line-height-relaxed;
+  max-width: 650px;
+  margin: 0 auto $spacing-10;
+
+  @include max-md {
+    font-size: $font-size-lg;
+  }
+}
+
+// Buttons
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $spacing-4;
+}
+
+// Decorations
+.decorations {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.decorItem {
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0.3;
+  filter: blur(0.5px);
+
+  @include dark-mode {
+    opacity: 0.25;
+  }
+
+  @include max-md {
+    font-size: 2rem;
+    opacity: 0.2;
+  }
+}
+
+.leaf1 {
+  top: 15%;
+  left: 10%;
+  font-size: 4rem;
+}
+
+.leaf2 {
+  top: 25%;
+  right: 15%;
+  font-size: 3.5rem;
+}
+
+.heart {
+  bottom: 30%;
+  left: 15%;
+  font-size: 2.5rem;
+}
+
+.earth {
+  top: 40%;
+  right: 8%;
+  font-size: 5rem;
+  opacity: 0.2;
+}
+
+.sun {
+  top: 10%;
+  right: 30%;
+  font-size: 2rem;
+}
+
+.water {
+  bottom: 25%;
+  right: 20%;
+  font-size: 2rem;
+}
+
+// Gradient orbs
+.gradientOrb1 {
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba($color-primary-green-accent, 0.15) 0%,
+    transparent 70%
+  );
+  filter: blur(60px);
+
+  @include dark-mode {
+    opacity: 0.6;
+  }
+}
+
+.gradientOrb2 {
+  position: absolute;
+  bottom: -20%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba($color-secondary-blue-light, 0.12) 0%,
+    transparent 70%
+  );
+  filter: blur(60px);
+
+  @include dark-mode {
+    opacity: 0.5;
+  }
+}
+
+// Scroll indicator
+.scrollIndicator {
+  position: absolute;
+  bottom: $spacing-10;
+  left: 50%;
+  transform: translateX(-50%);
+  @include flex-column;
+  align-items: center;
+  gap: $spacing-3;
+  opacity: 0.6;
+  animation: fadeInUp 1s ease 1.5s forwards;
+  opacity: 0;
+
+  @include max-md {
+    display: none;
+  }
+}
+
+.scrollText {
+  font-size: $font-size-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+
+.scrollMouse {
+  width: 24px;
+  height: 40px;
+  border: 2px solid var(--color-text-muted);
+  border-radius: 12px;
+  position: relative;
+}
+
+.scrollWheel {
+  width: 4px;
+  height: 8px;
+  background: var(--color-text-muted);
+  border-radius: 2px;
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scrollWheel 2s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 0.6;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes scrollWheel {
+  0%,
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translateX(-50%) translateY(10px);
+  }
+}

@@ -1,0 +1,176 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.timelineSection {
+  padding: $spacing-20 0;
+  background: $color-dark-bg;
+  overflow: hidden;
+}
+
+.container {
+  @include container;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: $spacing-16;
+}
+
+.subtitle {
+  display: inline-block;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-secondary-blue-light;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: $spacing-3;
+}
+
+.title {
+  font-family: $font-family-heading;
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  margin-bottom: $spacing-4;
+}
+
+.description {
+  font-size: $font-size-lg;
+  color: $color-dark-text-muted;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+// Timeline
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: $spacing-8 0;
+}
+
+.timelineLine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(
+    180deg,
+    $color-secondary-blue-light 0%,
+    $color-secondary-blue 50%,
+    $color-secondary-blue-dark 100%
+  );
+  transform-origin: top;
+  border-radius: $radius-full;
+
+  @include max-md {
+    left: 24px;
+  }
+}
+
+.timelineItem {
+  position: relative;
+  width: 50%;
+  padding: $spacing-6;
+
+  &.left {
+    padding-right: $spacing-16;
+    text-align: right;
+
+    @include max-md {
+      padding-right: $spacing-6;
+      text-align: left;
+    }
+  }
+
+  &.right {
+    margin-left: 50%;
+    padding-left: $spacing-16;
+
+    @include max-md {
+      margin-left: 0;
+      padding-left: $spacing-6;
+    }
+  }
+
+  @include max-md {
+    width: 100%;
+    padding-left: $spacing-16 !important;
+    padding-right: $spacing-4 !important;
+    text-align: left !important;
+  }
+}
+
+.timelineDot {
+  position: absolute;
+  top: $spacing-6;
+  width: 48px;
+  height: 48px;
+  border-radius: $radius-full;
+  background: $color-dark-surface;
+  border: 3px solid $color-secondary-blue-light;
+  @include flex-center;
+  z-index: 2;
+
+  .left & {
+    right: -24px;
+
+    @include max-md {
+      left: 0;
+      right: auto;
+    }
+  }
+
+  .right & {
+    left: -24px;
+
+    @include max-md {
+      left: 0;
+    }
+  }
+}
+
+.dotIcon {
+  font-size: 1.25rem;
+}
+
+.timelineContent {
+  background: $color-dark-surface;
+  border-radius: $radius-xl;
+  padding: $spacing-6;
+  border: 1px solid $color-dark-border;
+  transition: all $transition-base $transition-smooth;
+
+  &:hover {
+    border-color: rgba($color-secondary-blue-light, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(-4px);
+  }
+}
+
+.year {
+  display: inline-block;
+  font-family: $font-family-heading;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  color: $color-secondary-blue-light;
+  background: rgba($color-secondary-blue-light, 0.15);
+  padding: $spacing-1 $spacing-3;
+  border-radius: $radius-md;
+  margin-bottom: $spacing-2;
+}
+
+.itemTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-white;
+  margin-bottom: $spacing-2;
+}
+
+.itemDescription {
+  font-size: $font-size-sm;
+  color: $color-dark-text-muted;
+  line-height: $line-height-relaxed;
+}

@@ -1,0 +1,188 @@
+// ============================================
+// SASS VARIABLES - Design System Tokens
+// ============================================
+
+// Color Palette - Earth Tones & Nature Colors
+$color-primary-green: #2d6a4f;
+$color-primary-green-light: #40916c;
+$color-primary-green-dark: #1b4332;
+$color-primary-green-accent: #52b788;
+
+$color-secondary-blue: #0077b6;
+$color-secondary-blue-light: #00b4d8;
+$color-secondary-blue-dark: #023e8a;
+
+$color-earth-brown: #8b5a2b;
+$color-earth-tan: #d4a373;
+$color-earth-cream: #fefae0;
+
+$color-accent-yellow: #ffc300;
+$color-accent-orange: #fb8500;
+$color-accent-coral: #e76f51;
+
+// Neutral Colors
+$color-white: #ffffff;
+$color-off-white: #f8f9fa;
+$color-gray-100: #f1f3f4;
+$color-gray-200: #e9ecef;
+$color-gray-300: #dee2e6;
+$color-gray-400: #ced4da;
+$color-gray-500: #adb5bd;
+$color-gray-600: #6c757d;
+$color-gray-700: #495057;
+$color-gray-800: #343a40;
+$color-gray-900: #212529;
+$color-black: #0a0a0a;
+
+// Dark Mode Colors
+$color-dark-bg: #0f1419;
+$color-dark-surface: #1a1f26;
+$color-dark-surface-light: #252d38;
+$color-dark-border: #2f3b47;
+$color-dark-text: #e5e9ec;
+$color-dark-text-muted: #9aa5b1;
+
+// Gradients
+$gradient-primary: linear-gradient(
+  135deg,
+  $color-primary-green 0%,
+  $color-primary-green-accent 100%
+);
+$gradient-secondary: linear-gradient(
+  135deg,
+  $color-secondary-blue-dark 0%,
+  $color-secondary-blue-light 100%
+);
+$gradient-earth: linear-gradient(
+  135deg,
+  $color-earth-brown 0%,
+  $color-earth-tan 100%
+);
+$gradient-hero: linear-gradient(
+  180deg,
+  rgba($color-primary-green-dark, 0.9) 0%,
+  rgba($color-primary-green, 0.7) 50%,
+  transparent 100%
+);
+$gradient-dark-hero: linear-gradient(
+  180deg,
+  rgba($color-dark-bg, 0.95) 0%,
+  rgba($color-dark-surface, 0.8) 50%,
+  transparent 100%
+);
+
+// Typography
+$font-family-primary:
+  "Inter",
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  Roboto,
+  sans-serif;
+$font-family-heading:
+  "Outfit",
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  Roboto,
+  sans-serif;
+$font-family-mono: "JetBrains Mono", "Fira Code", monospace;
+
+// Font Sizes (using clamp for fluid typography)
+$font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+$font-size-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+$font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+$font-size-lg: clamp(1.125rem, 1rem + 0.625vw, 1.375rem);
+$font-size-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.625rem);
+$font-size-2xl: clamp(1.5rem, 1.25rem + 1.25vw, 2.25rem);
+$font-size-3xl: clamp(1.875rem, 1.5rem + 1.875vw, 3rem);
+$font-size-4xl: clamp(2.25rem, 1.75rem + 2.5vw, 4rem);
+$font-size-5xl: clamp(3rem, 2rem + 5vw, 6rem);
+
+// Font Weights
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+
+// Line Heights
+$line-height-tight: 1.1;
+$line-height-snug: 1.25;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.625;
+$line-height-loose: 2;
+
+// Spacing Scale
+$spacing-0: 0;
+$spacing-1: 0.25rem;
+$spacing-2: 0.5rem;
+$spacing-3: 0.75rem;
+$spacing-4: 1rem;
+$spacing-5: 1.25rem;
+$spacing-6: 1.5rem;
+$spacing-8: 2rem;
+$spacing-10: 2.5rem;
+$spacing-12: 3rem;
+$spacing-16: 4rem;
+$spacing-20: 5rem;
+$spacing-24: 6rem;
+$spacing-32: 8rem;
+$spacing-40: 10rem;
+$spacing-48: 12rem;
+$spacing-64: 16rem;
+
+// Border Radius
+$radius-sm: 0.25rem;
+$radius-md: 0.5rem;
+$radius-lg: 0.75rem;
+$radius-xl: 1rem;
+$radius-2xl: 1.5rem;
+$radius-3xl: 2rem;
+$radius-full: 9999px;
+
+// Shadows
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md:
+  0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg:
+  0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl:
+  0 20px 25px -5px rgba(0, 0, 0, 0.1),
+  0 10px 10px -5px rgba(0, 0, 0, 0.04);
+$shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+$shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+$shadow-glow-green: 0 0 40px rgba($color-primary-green-accent, 0.3);
+$shadow-glow-blue: 0 0 40px rgba($color-secondary-blue-light, 0.3);
+
+// Transitions
+$transition-fast: 150ms ease;
+$transition-base: 250ms ease;
+$transition-slow: 350ms ease;
+$transition-slower: 500ms ease;
+$transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+$transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$transition-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+// Z-Index Scale
+$z-dropdown: 100;
+$z-sticky: 200;
+$z-fixed: 300;
+$z-modal-backdrop: 400;
+$z-modal: 500;
+$z-popover: 600;
+$z-tooltip: 700;
+
+// Breakpoints
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;
+
+// Container
+$container-max-width: 1400px;
+$container-padding: $spacing-6;

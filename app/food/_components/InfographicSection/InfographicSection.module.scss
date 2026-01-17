@@ -1,0 +1,206 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.infographicSection {
+  padding: $spacing-20 0;
+  background: var(--color-bg);
+
+  @include dark-mode {
+    background: $color-dark-bg;
+  }
+}
+
+.container {
+  @include container;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-20;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: $spacing-10;
+}
+
+.subtitle {
+  display: inline-block;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: $spacing-3;
+
+  @include dark-mode {
+    color: $color-primary-green-accent;
+  }
+}
+
+.title {
+  font-family: $font-family-heading;
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  color: var(--color-text);
+  margin-bottom: $spacing-3;
+}
+
+.description {
+  font-size: $font-size-lg;
+  color: var(--color-text-muted);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+// Plate Section
+.plateSection {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.plateCard {
+  background: var(--color-surface);
+  border-radius: $radius-2xl;
+  padding: $spacing-10;
+  box-shadow: $shadow-lg;
+  border: 1px solid var(--color-border);
+
+  @include dark-mode {
+    background: $color-dark-surface;
+    border-color: $color-dark-border;
+  }
+}
+
+.barChart {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-8;
+}
+
+.barRow {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+}
+
+.barLabel {
+  display: flex;
+  align-items: center;
+  gap: $spacing-2;
+  font-weight: $font-weight-semibold;
+  color: var(--color-text);
+  font-size: $font-size-base;
+}
+
+.barIcon {
+  font-size: 1.5rem;
+}
+
+.barContainer {
+  height: 40px;
+  background: var(--color-surface-elevated);
+  border-radius: $radius-lg;
+  overflow: hidden;
+
+  @include dark-mode {
+    background: $color-dark-surface-light;
+  }
+}
+
+.bar {
+  height: 100%;
+  border-radius: $radius-lg;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: $spacing-4;
+  transform-origin: left;
+}
+
+.green {
+  background: $gradient-primary;
+}
+
+.earth {
+  background: $gradient-earth;
+}
+
+.coral {
+  background: linear-gradient(
+    135deg,
+    $color-accent-coral 0%,
+    $color-accent-orange 100%
+  );
+}
+
+.barValue {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+}
+
+.barDescription {
+  font-size: $font-size-sm;
+  color: var(--color-text-muted);
+  margin-left: 2rem;
+}
+
+// Impact Section
+.impactGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-6;
+
+  @include max-md {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+.impactCard {
+  @include flex-column;
+  align-items: center;
+  gap: $spacing-3;
+  padding: $spacing-8;
+  background: var(--color-surface);
+  border-radius: $radius-2xl;
+  text-align: center;
+  border: 1px solid var(--color-border);
+  transition: all $transition-base $transition-smooth;
+
+  @include dark-mode {
+    background: $color-dark-surface;
+    border-color: $color-dark-border;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: $shadow-xl;
+
+    .impactIcon {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.impactIcon {
+  font-size: 2.5rem;
+  transition: transform $transition-base;
+}
+
+.impactValue {
+  font-family: $font-family-heading;
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-bold;
+  color: var(--color-primary);
+
+  @include dark-mode {
+    color: $color-primary-green-accent;
+  }
+}
+
+.impactLabel {
+  font-size: $font-size-sm;
+  color: var(--color-text-muted);
+  line-height: $line-height-snug;
+}

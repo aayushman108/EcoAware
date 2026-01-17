@@ -1,0 +1,144 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.ctaSection {
+  position: relative;
+  padding: $spacing-24 0;
+  overflow: hidden;
+  background: var(--color-bg);
+
+  @include dark-mode {
+    background: $color-dark-bg;
+  }
+}
+
+.container {
+  @include container;
+  position: relative;
+  z-index: 2;
+}
+
+.content {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  @include flex-column;
+  align-items: center;
+  gap: $spacing-6;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  padding: $spacing-2 $spacing-4;
+  background: rgba($color-primary-green, 0.1);
+  color: var(--color-primary);
+  border-radius: $radius-full;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+
+  @include dark-mode {
+    background: rgba($color-primary-green-accent, 0.15);
+    color: $color-primary-green-accent;
+  }
+}
+
+.badgeIcon {
+  font-size: 1.1rem;
+}
+
+.title {
+  font-family: $font-family-heading;
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-bold;
+  color: var(--color-text);
+  line-height: $line-height-tight;
+
+  @include max-md {
+    font-size: $font-size-3xl;
+  }
+}
+
+.highlight {
+  @include text-gradient($gradient-primary);
+}
+
+.description {
+  font-size: $font-size-lg;
+  color: var(--color-text-muted);
+  line-height: $line-height-relaxed;
+  max-width: 550px;
+
+  @include max-md {
+    font-size: $font-size-base;
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $spacing-4;
+  margin-top: $spacing-4;
+}
+
+// Decorations
+.decorations {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.floatingIcon {
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0.2;
+
+  @include dark-mode {
+    opacity: 0.15;
+  }
+
+  @include max-md {
+    font-size: 2rem;
+    opacity: 0.1;
+  }
+}
+
+.icon1 {
+  top: 15%;
+  left: 10%;
+}
+
+.icon2 {
+  top: 25%;
+  right: 12%;
+}
+
+.icon3 {
+  bottom: 20%;
+  left: 15%;
+  font-size: 4rem;
+}
+
+.icon4 {
+  bottom: 30%;
+  right: 8%;
+}
+
+// Gradient background
+.gradientBg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba($color-primary-green-accent, 0.08) 0%,
+    transparent 50%
+  );
+  z-index: 1;
+
+  @include dark-mode {
+    opacity: 0.6;
+  }
+}

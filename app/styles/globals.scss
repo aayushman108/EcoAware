@@ -1,0 +1,344 @@
+// ============================================
+// GLOBAL STYLES - Base Styles & Reset
+// ============================================
+
+@use "variables" as *;
+@use "mixins" as *;
+
+// Import Google Fonts
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap");
+
+// ============================================
+// CSS CUSTOM PROPERTIES (for theme switching)
+// ============================================
+
+:root {
+  // Colors
+  --color-bg: #{$color-off-white};
+  --color-surface: #{$color-white};
+  --color-surface-elevated: #{$color-white};
+  --color-border: #{$color-gray-200};
+  --color-text: #{$color-gray-900};
+  --color-text-muted: #{$color-gray-600};
+  --color-text-light: #{$color-gray-500};
+
+  // Primary colors
+  --color-primary: #{$color-primary-green};
+  --color-primary-light: #{$color-primary-green-light};
+  --color-primary-dark: #{$color-primary-green-dark};
+  --color-primary-accent: #{$color-primary-green-accent};
+
+  // Secondary colors
+  --color-secondary: #{$color-secondary-blue};
+  --color-secondary-light: #{$color-secondary-blue-light};
+  --color-secondary-dark: #{$color-secondary-blue-dark};
+
+  // Shadows
+  --shadow-sm: #{$shadow-sm};
+  --shadow-md: #{$shadow-md};
+  --shadow-lg: #{$shadow-lg};
+  --shadow-xl: #{$shadow-xl};
+
+  // Header
+  --header-height: 80px;
+
+  // Transitions
+  --transition-base: #{$transition-base};
+  --transition-smooth: #{$transition-smooth};
+
+  color-scheme: light;
+}
+
+// Dark mode
+[data-theme="dark"] {
+  --color-bg: #{$color-dark-bg};
+  --color-surface: #{$color-dark-surface};
+  --color-surface-elevated: #{$color-dark-surface-light};
+  --color-border: #{$color-dark-border};
+  --color-text: #{$color-dark-text};
+  --color-text-muted: #{$color-dark-text-muted};
+  --color-text-light: #{$color-gray-500};
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+
+  color-scheme: dark;
+}
+
+// ============================================
+// CSS RESET & BASE STYLES
+// ============================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-normal;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition:
+    background-color $transition-slow,
+    color $transition-slow;
+}
+
+// ============================================
+// TYPOGRAPHY BASE
+// ============================================
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-heading;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: $font-size-5xl;
+}
+
+h2 {
+  font-size: $font-size-4xl;
+}
+
+h3 {
+  font-size: $font-size-3xl;
+}
+
+h4 {
+  font-size: $font-size-2xl;
+}
+
+h5 {
+  font-size: $font-size-xl;
+}
+
+h6 {
+  font-size: $font-size-lg;
+}
+
+p {
+  line-height: $line-height-relaxed;
+  color: var(--color-text-muted);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: var(--color-primary);
+  }
+}
+
+// ============================================
+// LINKS & BUTTONS
+// ============================================
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+
+  @include focus-visible;
+}
+
+// ============================================
+// IMAGES & MEDIA
+// ============================================
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+// ============================================
+// FORM ELEMENTS
+// ============================================
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: $radius-lg;
+  padding: $spacing-3 $spacing-4;
+  transition:
+    border-color $transition-fast,
+    box-shadow $transition-fast;
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba($color-primary-green, 0.1);
+  }
+
+  &::placeholder {
+    color: var(--color-text-light);
+  }
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+// ============================================
+// LISTS
+// ============================================
+
+ul,
+ol {
+  list-style: none;
+}
+
+// ============================================
+// SELECTION
+// ============================================
+
+::selection {
+  background-color: rgba($color-primary-green-accent, 0.3);
+  color: var(--color-text);
+}
+
+// ============================================
+// SCROLLBAR
+// ============================================
+
+body {
+  @include custom-scrollbar;
+}
+
+// ============================================
+// UTILITY CLASSES
+// ============================================
+
+.container {
+  @include container;
+}
+
+.section {
+  @include section-padding;
+}
+
+.sr-only {
+  @include sr-only;
+}
+
+.text-gradient {
+  @include text-gradient($gradient-primary);
+}
+
+// ============================================
+// FOCUS STATES
+// ============================================
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary-accent);
+  outline-offset: 2px;
+}
+
+// ============================================
+// REDUCED MOTION
+// ============================================
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// ============================================
+// SKIP LINK (Accessibility)
+// ============================================
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: $spacing-3 $spacing-6;
+  background: var(--color-primary);
+  color: $color-white;
+  border-radius: 0 0 $radius-lg $radius-lg;
+  font-weight: $font-weight-semibold;
+  z-index: $z-tooltip;
+  transition: top $transition-fast;
+
+  &:focus {
+    top: 0;
+  }
+}
+
+// ============================================
+// PAGE TRANSITIONS
+// ============================================
+
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}

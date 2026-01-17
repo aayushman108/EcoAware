@@ -1,0 +1,102 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.section {
+  @include section-padding;
+  position: relative;
+}
+
+// Backgrounds
+.default {
+  background: var(--color-bg);
+}
+
+.surface {
+  background: var(--color-surface);
+
+  @include dark-mode {
+    background: $color-dark-surface;
+  }
+}
+
+.gradient {
+  background: linear-gradient(
+    180deg,
+    var(--color-bg) 0%,
+    var(--color-surface) 50%,
+    var(--color-bg) 100%
+  );
+
+  @include dark-mode {
+    background: linear-gradient(
+      180deg,
+      $color-dark-bg 0%,
+      $color-dark-surface 50%,
+      $color-dark-bg 100%
+    );
+  }
+}
+
+.dark {
+  background: $color-dark-bg;
+  color: $color-dark-text;
+
+  .title {
+    color: $color-dark-text;
+  }
+
+  .subtitle {
+    color: $color-primary-green-accent;
+  }
+}
+
+// Container
+.container {
+  @include container;
+}
+
+.fullWidthWrapper {
+  width: 100%;
+}
+
+// Centered Content
+.centered {
+  text-align: center;
+
+  .header {
+    align-items: center;
+  }
+}
+
+// Header
+.header {
+  @include flex-column;
+  gap: $spacing-3;
+  margin-bottom: $spacing-12;
+}
+
+.subtitle {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.title {
+  font-family: $font-family-heading;
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-bold;
+  color: var(--color-text);
+  line-height: $line-height-tight;
+  max-width: 800px;
+
+  @include dark-mode {
+    color: $color-dark-text;
+  }
+}
+
+// Content
+.content {
+  position: relative;
+}

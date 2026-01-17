@@ -1,0 +1,125 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.statsSection {
+  position: relative;
+  padding: $spacing-24 0;
+  background: $color-dark-bg;
+  overflow: hidden;
+}
+
+.container {
+  @include container;
+  position: relative;
+  z-index: 1;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: $spacing-16;
+}
+
+.subtitle {
+  display: inline-block;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-primary-green-accent;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: $spacing-3;
+}
+
+.title {
+  font-family: $font-family-heading;
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  margin-bottom: $spacing-4;
+}
+
+.description {
+  font-size: $font-size-lg;
+  color: $color-dark-text-muted;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: $line-height-relaxed;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-8;
+
+  @include max-lg {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include max-sm {
+    grid-template-columns: 1fr;
+    gap: $spacing-6;
+  }
+}
+
+.statItem {
+  @include flex-column;
+  align-items: center;
+  gap: $spacing-3;
+  padding: $spacing-8;
+  background: $color-dark-surface;
+  border-radius: $radius-2xl;
+  border: 1px solid $color-dark-border;
+  text-align: center;
+  transition: all $transition-base $transition-smooth;
+
+  &:hover {
+    transform: translateY(-6px);
+    background: $color-dark-surface-light;
+    border-color: rgba($color-primary-green-accent, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+
+    .icon {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.icon {
+  font-size: 2.5rem;
+  margin-bottom: $spacing-2;
+  transition: transform $transition-base;
+}
+
+.valueWrapper {
+  display: flex;
+  align-items: baseline;
+  gap: $spacing-1;
+}
+
+.value {
+  font-family: $font-family-heading;
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-extrabold;
+  color: $color-white;
+  line-height: 1;
+}
+
+.suffix {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-primary-green-accent;
+}
+
+.label {
+  font-size: $font-size-sm;
+  color: $color-dark-text-muted;
+  line-height: $line-height-snug;
+  max-width: 160px;
+}
+
+// Background decoration
+.bgPattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2352b788' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}

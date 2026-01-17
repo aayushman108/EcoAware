@@ -1,0 +1,95 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-8;
+
+  @include max-lg {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+.topicCard {
+  perspective: 1000px;
+  background: var(--color-bg);
+  border-radius: $radius-2xl;
+  padding: $spacing-8;
+  text-align: center;
+  border: 1px solid var(--color-border);
+  transition: all $transition-base $transition-smooth;
+
+  @include dark-mode {
+    background: $color-dark-surface-light;
+    border-color: $color-dark-border;
+  }
+
+  &:hover {
+    transform: translateY(-10px) rotateX(2deg);
+    box-shadow: $shadow-2xl;
+    border-color: rgba($color-primary-green-accent, 0.3);
+
+    .iconWrapper {
+      transform: scale(1.1);
+      box-shadow: $shadow-glow-green;
+    }
+  }
+}
+
+.iconWrapper {
+  @include flex-center;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto $spacing-6;
+  background: rgba($color-primary-green, 0.1);
+  border-radius: $radius-2xl;
+  transition: all $transition-base $transition-smooth;
+
+  @include dark-mode {
+    background: rgba($color-primary-green-accent, 0.15);
+  }
+}
+
+.icon {
+  font-size: 2.5rem;
+}
+
+.title {
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: var(--color-text);
+  margin-bottom: $spacing-3;
+}
+
+.description {
+  font-size: $font-size-base;
+  color: var(--color-text-muted);
+  line-height: $line-height-relaxed;
+  margin-bottom: $spacing-6;
+}
+
+.facts {
+  list-style: none;
+  text-align: left;
+  @include flex-column;
+  gap: $spacing-3;
+}
+
+.factItem {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-3;
+  font-size: $font-size-sm;
+  color: var(--color-text);
+  line-height: $line-height-snug;
+}
+
+.factBullet {
+  color: $color-primary-green-accent;
+  font-weight: $font-weight-bold;
+  flex-shrink: 0;
+}

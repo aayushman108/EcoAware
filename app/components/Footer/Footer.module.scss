@@ -1,0 +1,253 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.footer {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding-top: $spacing-16;
+  margin-top: auto;
+
+  @include dark-mode {
+    background: $color-dark-surface;
+  }
+}
+
+.container {
+  @include container;
+}
+
+.content {
+  display: grid;
+  gap: $spacing-12;
+  padding-bottom: $spacing-12;
+
+  @include md {
+    grid-template-columns: 1.5fr 2fr 1.5fr;
+  }
+
+  @include max-md {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+// Brand Section
+.brand {
+  @include flex-column;
+  gap: $spacing-4;
+
+  @include max-md {
+    align-items: center;
+  }
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  text-decoration: none;
+
+  @include focus-visible;
+}
+
+.logoIcon {
+  font-size: 1.75rem;
+}
+
+.logoText {
+  @include text-gradient($gradient-primary);
+}
+
+.tagline {
+  font-size: $font-size-sm;
+  color: var(--color-text-muted);
+  max-width: 280px;
+  line-height: $line-height-relaxed;
+
+  @include max-md {
+    max-width: 100%;
+  }
+}
+
+// Social Links
+.social {
+  display: flex;
+  gap: $spacing-3;
+  margin-top: $spacing-2;
+
+  @include max-md {
+    justify-content: center;
+  }
+}
+
+.socialLink {
+  @include flex-center;
+  width: 40px;
+  height: 40px;
+  border-radius: $radius-full;
+  background: var(--color-surface-elevated);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  font-weight: $font-weight-bold;
+  text-decoration: none;
+  transition: all $transition-fast;
+
+  @include focus-visible;
+
+  &:hover {
+    background: var(--color-primary);
+    color: $color-white;
+    transform: translateY(-2px);
+  }
+}
+
+// Navigation Links
+.links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-8;
+
+  @include max-md {
+    gap: $spacing-10;
+  }
+
+  @include max-sm {
+    grid-template-columns: 1fr;
+    gap: $spacing-8;
+  }
+}
+
+.linkGroup {
+  ul {
+    list-style: none;
+    margin-top: $spacing-4;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3;
+
+    @include max-md {
+      align-items: center;
+    }
+  }
+}
+
+.linkTitle {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.link {
+  font-size: $font-size-sm;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  @include focus-visible;
+
+  &:hover {
+    color: var(--color-primary);
+  }
+}
+
+// Newsletter Section
+.newsletter {
+  @include flex-column;
+  gap: $spacing-4;
+
+  @include max-md {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+.newsletterTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: var(--color-text);
+}
+
+.newsletterText {
+  font-size: $font-size-sm;
+  color: var(--color-text-muted);
+}
+
+.newsletterForm {
+  display: flex;
+  gap: $spacing-2;
+  margin-top: $spacing-2;
+
+  @include max-sm {
+    flex-direction: column;
+  }
+}
+
+.newsletterInput {
+  flex: 1;
+  padding: $spacing-3 $spacing-4;
+  font-size: $font-size-sm;
+  border: 1px solid var(--color-border);
+  border-radius: $radius-lg;
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition: all $transition-fast;
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba($color-primary-green, 0.1);
+  }
+
+  &::placeholder {
+    color: var(--color-text-light);
+  }
+}
+
+.newsletterButton {
+  padding: $spacing-3 $spacing-6;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  background: $gradient-primary;
+  color: $color-white;
+  border: none;
+  border-radius: $radius-lg;
+  cursor: pointer;
+  transition: all $transition-fast;
+  white-space: nowrap;
+
+  @include focus-visible;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-glow-green;
+  }
+}
+
+// Bottom Bar
+.bottom {
+  @include flex-between;
+  flex-wrap: wrap;
+  gap: $spacing-4;
+  padding: $spacing-6 0;
+  border-top: 1px solid var(--color-border);
+
+  @include max-md {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.copyright {
+  font-size: $font-size-sm;
+  color: var(--color-text-muted);
+}
+
+.madeWith {
+  font-size: $font-size-sm;
+  color: var(--color-text-muted);
+}

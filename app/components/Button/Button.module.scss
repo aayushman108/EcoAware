@@ -1,0 +1,163 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-2;
+  font-family: $font-family-primary;
+  font-weight: $font-weight-semibold;
+  line-height: 1;
+  text-decoration: none;
+  border: none;
+  border-radius: $radius-lg;
+  cursor: pointer;
+  transition: all $transition-base $transition-smooth;
+  position: relative;
+  overflow: hidden;
+
+  @include focus-visible;
+
+  &:disabled,
+  &.loading {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// Size Variants
+.sm {
+  padding: $spacing-2 $spacing-4;
+  font-size: $font-size-sm;
+  border-radius: $radius-md;
+}
+
+.md {
+  padding: $spacing-3 $spacing-6;
+  font-size: $font-size-base;
+}
+
+.lg {
+  padding: $spacing-4 $spacing-8;
+  font-size: $font-size-lg;
+  border-radius: $radius-xl;
+}
+
+// Primary Variant
+.primary {
+  background: $gradient-primary;
+  color: $color-white;
+  box-shadow: $shadow-sm;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba($color-white, 0.2) 0%,
+      transparent 50%
+    );
+    opacity: 0;
+    transition: opacity $transition-fast;
+  }
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: $shadow-glow-green;
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: $shadow-sm;
+  }
+}
+
+// Secondary Variant
+.secondary {
+  background: $gradient-secondary;
+  color: $color-white;
+  box-shadow: $shadow-sm;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: $shadow-glow-blue;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+// Outline Variant
+.outline {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+
+  &:hover:not(:disabled) {
+    background: var(--color-primary);
+    color: $color-white;
+  }
+}
+
+// Ghost Variant
+.ghost {
+  background: transparent;
+  color: var(--color-text-muted);
+
+  &:hover:not(:disabled) {
+    background: var(--color-surface-elevated);
+    color: var(--color-text);
+  }
+}
+
+// Full Width
+.fullWidth {
+  width: 100%;
+}
+
+// Icon
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1em;
+}
+
+// Loading Spinner
+.loading {
+  .text {
+    opacity: 0.5;
+  }
+}
+
+.spinner {
+  position: absolute;
+  @include flex-center;
+
+  svg {
+    width: 1.25em;
+    height: 1.25em;
+    animation: spin 0.8s linear infinite;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.text {
+  transition: opacity $transition-fast;
+}

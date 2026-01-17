@@ -1,0 +1,234 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.card {
+  position: relative;
+  background: var(--color-surface);
+  border-radius: $radius-2xl;
+  overflow: hidden;
+  transition: all $transition-base $transition-smooth;
+
+  @include focus-visible;
+
+  .cardLink:hover &,
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: $shadow-xl;
+  }
+}
+
+// Variants
+.default {
+  padding: $spacing-8;
+  box-shadow: $shadow-md;
+  border: 1px solid var(--color-border);
+
+  @include dark-mode {
+    background: $color-dark-surface;
+    border-color: $color-dark-border;
+  }
+}
+
+.featured {
+  padding: 0;
+  box-shadow: $shadow-lg;
+
+  .content {
+    padding: $spacing-6;
+  }
+
+  @include dark-mode {
+    background: $color-dark-surface;
+  }
+}
+
+.glass {
+  padding: $spacing-8;
+  @include glass-morphism(20px, 0.6);
+  border: 1px solid rgba($color-white, 0.2);
+  box-shadow: $shadow-lg;
+
+  @include dark-mode {
+    @include glass-morphism-dark(20px, 0.4);
+    border-color: rgba($color-white, 0.1);
+  }
+}
+
+.gradient {
+  padding: $spacing-8;
+  color: $color-white;
+  box-shadow: $shadow-lg;
+  z-index: 1;
+
+  .title,
+  .description {
+    color: $color-white;
+  }
+
+  .description {
+    opacity: 0.9;
+  }
+}
+
+.gradientBg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transition: opacity $transition-base;
+}
+
+.green .gradientBg {
+  background: $gradient-primary;
+}
+
+.blue .gradientBg {
+  background: $gradient-secondary;
+}
+
+.earth .gradientBg {
+  background: $gradient-earth;
+}
+
+.coral .gradientBg {
+  background: linear-gradient(
+    135deg,
+    $color-accent-coral 0%,
+    $color-accent-orange 100%
+  );
+}
+
+// Image
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  @include aspect-ratio(16, 10);
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform $transition-slow;
+
+  .cardLink:hover & {
+    transform: scale(1.05);
+  }
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba($color-black, 0.3) 100%
+  );
+}
+
+// Content
+.content {
+  position: relative;
+  @include flex-column;
+  gap: $spacing-3;
+}
+
+// Icon
+.icon {
+  @include flex-center;
+  width: 60px;
+  height: 60px;
+  border-radius: $radius-xl;
+  font-size: 1.75rem;
+  margin-bottom: $spacing-2;
+  transition: transform $transition-fast;
+
+  .cardLink:hover & {
+    transform: scale(1.1);
+  }
+}
+
+.green .icon {
+  background: rgba($color-primary-green, 0.1);
+  color: $color-primary-green;
+
+  @include dark-mode {
+    background: rgba($color-primary-green-accent, 0.2);
+    color: $color-primary-green-accent;
+  }
+}
+
+.blue .icon {
+  background: rgba($color-secondary-blue, 0.1);
+  color: $color-secondary-blue;
+
+  @include dark-mode {
+    background: rgba($color-secondary-blue-light, 0.2);
+    color: $color-secondary-blue-light;
+  }
+}
+
+.earth .icon {
+  background: rgba($color-earth-brown, 0.1);
+  color: $color-earth-brown;
+
+  @include dark-mode {
+    background: rgba($color-earth-tan, 0.2);
+    color: $color-earth-tan;
+  }
+}
+
+.coral .icon {
+  background: rgba($color-accent-coral, 0.1);
+  color: $color-accent-coral;
+
+  @include dark-mode {
+    background: rgba($color-accent-orange, 0.2);
+    color: $color-accent-orange;
+  }
+}
+
+.gradient .icon {
+  background: rgba($color-white, 0.2);
+  color: $color-white;
+}
+
+// Title
+.title {
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: var(--color-text);
+  line-height: $line-height-snug;
+}
+
+// Description
+.description {
+  font-size: $font-size-base;
+  color: var(--color-text-muted);
+  line-height: $line-height-relaxed;
+  @include text-clamp(3);
+}
+
+// Arrow
+.arrow {
+  display: inline-block;
+  font-size: $font-size-xl;
+  color: var(--color-primary);
+  margin-top: $spacing-2;
+  transition: transform $transition-fast;
+
+  .gradient & {
+    color: $color-white;
+  }
+
+  .cardLink:hover & {
+    transform: translateX(8px);
+  }
+}

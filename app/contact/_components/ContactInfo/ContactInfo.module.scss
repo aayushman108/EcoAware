@@ -1,0 +1,134 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-6;
+}
+
+.infoCard,
+.socialCard,
+.faqCard {
+  background: var(--color-surface);
+  border-radius: $radius-xl;
+  padding: $spacing-6;
+  border: 1px solid var(--color-border);
+
+  @include dark-mode {
+    background: $color-dark-surface;
+    border-color: $color-dark-border;
+  }
+}
+
+.cardTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: var(--color-text);
+  margin-bottom: $spacing-4;
+}
+
+// Details List
+.detailsList {
+  list-style: none;
+  @include flex-column;
+  gap: $spacing-4;
+}
+
+.detailItem {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-3;
+}
+
+.detailIcon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.detailContent {
+  @include flex-column;
+  gap: $spacing-1;
+}
+
+.detailLabel {
+  font-size: $font-size-xs;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detailValue {
+  font-size: $font-size-base;
+  color: var(--color-text);
+  font-weight: $font-weight-medium;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: var(--color-primary);
+  }
+}
+
+// Social Card
+.socialText {
+  font-size: $font-size-sm;
+  color: var(--color-text-muted);
+  margin-bottom: $spacing-4;
+  line-height: $line-height-relaxed;
+}
+
+.socialLinks {
+  display: flex;
+  gap: $spacing-3;
+}
+
+.socialLink {
+  @include flex-center;
+  width: 44px;
+  height: 44px;
+  border-radius: $radius-lg;
+  background: var(--color-surface-elevated);
+  color: var(--color-text-muted);
+  font-weight: $font-weight-bold;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all $transition-fast;
+
+  @include focus-visible;
+
+  &:hover {
+    background: var(--color-primary);
+    color: $color-white;
+    transform: translateY(-2px);
+  }
+}
+
+// FAQ Card
+.faqItem {
+  padding: $spacing-4 0;
+  border-bottom: 1px solid var(--color-border);
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  &:first-of-type {
+    padding-top: 0;
+  }
+}
+
+.faqQuestion {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: var(--color-text);
+  margin-bottom: $spacing-2;
+}
+
+.faqAnswer {
+  font-size: $font-size-sm;
+  color: var(--color-text-muted);
+  line-height: $line-height-relaxed;
+}

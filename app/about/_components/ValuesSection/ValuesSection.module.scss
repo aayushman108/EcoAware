@@ -1,0 +1,100 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.valuesSection {
+  padding: $spacing-20 0;
+  background: var(--color-bg);
+
+  @include dark-mode {
+    background: $color-dark-bg;
+  }
+}
+
+.container {
+  @include container;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: $spacing-12;
+}
+
+.subtitle {
+  display: inline-block;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-earth-brown;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: $spacing-3;
+
+  @include dark-mode {
+    color: $color-earth-tan;
+  }
+}
+
+.title {
+  font-family: $font-family-heading;
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  color: var(--color-text);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-6;
+
+  @include max-lg {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include max-sm {
+    grid-template-columns: 1fr;
+  }
+}
+
+.valueCard {
+  background: var(--color-surface);
+  border-radius: $radius-xl;
+  padding: $spacing-8;
+  text-align: center;
+  border: 1px solid var(--color-border);
+  transition: all $transition-base $transition-smooth;
+
+  @include dark-mode {
+    background: $color-dark-surface;
+    border-color: $color-dark-border;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: $shadow-lg;
+    border-color: rgba($color-earth-tan, 0.3);
+
+    .icon {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.icon {
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: $spacing-4;
+  transition: transform $transition-base;
+}
+
+.cardTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
+  color: var(--color-text);
+  margin-bottom: $spacing-2;
+}
+
+.cardDescription {
+  font-size: $font-size-sm;
+  color: var(--color-text-muted);
+  line-height: $line-height-relaxed;
+}
