@@ -7,9 +7,10 @@
 import { Metadata } from "next";
 import { generateSEO } from "@/app/lib/seo";
 import PageHero from "../_components/PageHero";
+
+import styles from "./page.module.scss";
 import MissionSection from "./_components/MissionSection";
 import ValuesSection from "./_components/ValuesSection";
-import styles from "./page.module.scss";
 
 export const metadata: Metadata = generateSEO({
   title: "About Us",

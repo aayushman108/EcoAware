@@ -4,7 +4,12 @@
  * Reusable button with multiple variants and sizes
  */
 
-import { ButtonHTMLAttributes, forwardRef, ReactNode } from "react";
+import {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  forwardRef,
+  ReactNode,
+} from "react";
 import Link from "next/link";
 import styles from "./Button.module.scss";
 
@@ -22,12 +27,17 @@ interface ButtonBaseProps {
 }
 
 interface ButtonAsButton
-  extends ButtonBaseProps, ButtonHTMLAttributes<HTMLButtonElement> {
+  extends
+    ButtonBaseProps,
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
   as?: "button";
   href?: never;
 }
 
-interface ButtonAsLink extends ButtonBaseProps {
+interface ButtonAsLink
+  extends
+    ButtonBaseProps,
+    Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "children"> {
   as: "link";
   href: string;
   external?: boolean;
