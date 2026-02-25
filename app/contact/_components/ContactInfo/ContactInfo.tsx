@@ -10,6 +10,7 @@ import { useRef, useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./ContactInfo.module.scss";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,8 +18,8 @@ const contactDetails = [
   {
     icon: "📧",
     label: "Email",
-    value: "hello@ecoaware.org",
-    href: "mailto:hello@ecoaware.org",
+    value: "aayushmansharma108@gmail.com",
+    href: "mailto:aayushmansharma108@gmail.com",
   },
   {
     icon: "📍",
@@ -35,10 +36,22 @@ const contactDetails = [
 ];
 
 const socialLinks = [
-  { icon: "𝕏", label: "Twitter", href: "https://twitter.com" },
-  { icon: "f", label: "Facebook", href: "https://facebook.com" },
-  { icon: "📷", label: "Instagram", href: "https://instagram.com" },
-  { icon: "in", label: "LinkedIn", href: "https://linkedin.com" },
+  { icon: "𝕏", label: "Twitter", href: "https://x.com/aayushman1008" },
+  {
+    icon: "f",
+    label: "Facebook",
+    href: "https://www.facebook.com/aayush.maan.9461",
+  },
+  {
+    icon: "📷",
+    label: "Instagram",
+    href: "https://www.instagram.com/aayushmaan108",
+  },
+  {
+    icon: "in",
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/aayushman-sharma-a8abbb277",
+  },
 ];
 
 export default function ContactInfo() {
@@ -81,9 +94,9 @@ export default function ContactInfo() {
               <div className={styles.detailContent}>
                 <span className={styles.detailLabel}>{detail.label}</span>
                 {detail.href ? (
-                  <a href={detail.href} className={styles.detailValue}>
+                  <Link href={detail.href} className={styles.detailValue}>
                     {detail.value}
-                  </a>
+                  </Link>
                 ) : (
                   <span className={styles.detailValue}>{detail.value}</span>
                 )}

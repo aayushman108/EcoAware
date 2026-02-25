@@ -8,7 +8,6 @@
 
 import { ReactNode, useRef } from "react";
 import Link from "next/link";
-import { useScrollAnimation } from "@/app/hooks/useGSAP";
 import styles from "./Card.module.scss";
 
 type CardVariant = "default" | "featured" | "glass" | "gradient";
@@ -39,12 +38,6 @@ export default function Card({
   animate = true,
 }: CardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
-
-  // Apply scroll animation if enabled
-  const animatedRef = useScrollAnimation({
-    from: { opacity: 0, y: 50, scale: 0.95 },
-    to: { opacity: 1, y: 0, scale: 1, duration: 0.8 },
-  });
 
   const classes = [styles.card, styles[variant], styles[color], className]
     .filter(Boolean)
@@ -86,7 +79,7 @@ export default function Card({
   );
 
   const cardElement = (
-    <div ref={animate ? animatedRef : cardRef} className={classes}>
+    <div ref={cardRef} className={classes}>
       {content}
     </div>
   );
