@@ -34,7 +34,6 @@ export default function HealthPage() {
         title="Health & Wellness"
         subtitle="Your Well-Being Journey"
         description="Discover the foundations of physical and mental well-being. Small daily habits can lead to transformative results."
-        icon="❤️"
         color="coral"
       />
       <TopicsGrid />

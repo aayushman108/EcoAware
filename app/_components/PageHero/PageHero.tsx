@@ -7,6 +7,7 @@
 "use client";
 
 import { useRef, useLayoutEffect } from "react";
+import { usePathname } from "next/navigation";
 import { gsap } from "gsap";
 import styles from "./PageHero.module.scss";
 
@@ -14,7 +15,6 @@ interface PageHeroProps {
   title: string;
   subtitle: string;
   description: string;
-  icon: string;
   color?: "green" | "blue" | "coral" | "earth";
 }
 
@@ -22,80 +22,127 @@ export default function PageHero({
   title,
   subtitle,
   description,
-  icon,
   color = "green",
 }: PageHeroProps) {
+  const pathname = usePathname();
+  const resolvedColor = color ?? "green";
   const heroRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLSpanElement>(null);
+  const descriptionRef = useRef<HTMLParagraphElement>(null);
+  const decorRef = useRef<HTMLDivElement>(null);
+
+  const floatingDecorIcons: Record<NonNullable<PageHeroProps["color"]>, string[]> = {
+    green: ["🌿", "🍃", "💚", "🌱", "☀️", "💧"],
+    blue: ["💧", "🌊", "🫧", "🐳", "☁️", "✨"],
+    coral: ["🪸", "🐠", "🌺", "🐚", "⭐", "🌊"],
+    earth: ["🌍", "🍂", "🪨", "🌾", "🌤️", "🍃"],
+  };
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      tl.from(`.${styles.iconWrapper}`, {
-        scale: 0,
-        rotation: -180,
-        duration: 0.8,
-      })
-        .from(
-          `.${styles.subtitle}`,
-          {
-            opacity: 0,
-            y: 20,
-            duration: 0.5,
-          },
-          "-=0.3",
-        )
-        .from(
-          `.${styles.title}`,
-          {
-            opacity: 0,
-            y: 30,
-            duration: 0.6,
-          },
-          "-=0.3",
-        )
-        .from(
-          `.${styles.description}`,
-          {
-            opacity: 0,
-            y: 20,
-            duration: 0.5,
-          },
-          "-=0.3",
-        );
+      // Animate background decorations (same feel as homepage hero)
+      tl.fromTo(
+        decorRef.current?.querySelectorAll(".decor-item") || [],
+        { scale: 0, opacity: 0 },
+        {
+          scale: 1,
+          opacity: 0.85,
+          duration: 1.2,
+          stagger: 0.1,
+          ease: "back.out(1.7)",
+        },
+        0,
+      );
 
-      // Floating animation
-      gsap.to(`.${styles.icon}`, {
-        y: -8,
-        duration: 2,
+      // Animate page hero content
+      tl.from(
+        subtitleRef.current,
+        {
+          y: 24,
+          opacity: 0,
+          duration: 0.6,
+        },
+        0.4,
+      );
+
+      tl.from(
+        titleRef.current,
+        {
+          y: 40,
+          opacity: 0,
+          duration: 0.85,
+        },
+        0.55,
+      );
+
+      tl.from(
+        descriptionRef.current,
+        {
+          y: 24,
+          opacity: 0,
+          duration: 0.65,
+        },
+        0.7,
+      );
+
+      // Floating animation for background decorations (same pattern as homepage hero)
+      gsap.to(decorRef.current?.querySelectorAll(".decor-item") || [], {
+        y: -15,
+        duration: 2.5,
         ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
+        stagger: {
+          each: 0.4,
+          repeat: -1,
+          yoyo: true,
+        },
       });
     }, heroRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [pathname]);
 
   return (
-    <section ref={heroRef} className={`${styles.pageHero} ${styles[color]}`}>
+    <section
+      ref={heroRef}
+      className={`${styles.pageHero} ${styles[resolvedColor]}`}
+    >
       <div className={styles.container}>
-        <div ref={contentRef} className={styles.content}>
-          <div className={styles.iconWrapper}>
-            <span className={styles.icon} aria-hidden="true">
-              {icon}
-            </span>
-          </div>
-
-          <span className={styles.subtitle}>{subtitle}</span>
-          <h1 className={styles.title}>{title}</h1>
-          <p className={styles.description}>{description}</p>
+        <div className={styles.content}>
+          <span ref={subtitleRef} className={styles.subtitle}>
+            {subtitle}
+          </span>
+          <h1 ref={titleRef} className={styles.title}>
+            <span className={styles.gradientTitle}>{title}</span>
+          </h1>
+          <p ref={descriptionRef} className={styles.description}>
+            {description}
+          </p>
         </div>
       </div>
 
       {/* Background decorations */}
-      <div className={styles.decorations} aria-hidden="true">
+      <div ref={decorRef} className={styles.decorations} aria-hidden="true">
+        <div className={`${styles.decorItem} ${styles.float1} decor-item`}>
+          {floatingDecorIcons[resolvedColor][0]}
+        </div>
+        <div className={`${styles.decorItem} ${styles.float2} decor-item`}>
+          {floatingDecorIcons[resolvedColor][1]}
+        </div>
+        <div className={`${styles.decorItem} ${styles.float3} decor-item`}>
+          {floatingDecorIcons[resolvedColor][2]}
+        </div>
+        <div className={`${styles.decorItem} ${styles.float4} decor-item`}>
+          {floatingDecorIcons[resolvedColor][3]}
+        </div>
+        <div className={`${styles.decorItem} ${styles.float5} decor-item`}>
+          {floatingDecorIcons[resolvedColor][4]}
+        </div>
+        <div className={`${styles.decorItem} ${styles.float6} decor-item`}>
+          {floatingDecorIcons[resolvedColor][5]}
+        </div>
         <div className={styles.orb1} />
         <div className={styles.orb2} />
       </div>

@@ -33,7 +33,6 @@ export default function EnvironmentPage() {
         title="Environment & Climate"
         subtitle="Our Planet, Our Responsibility"
         description="Understand the challenges our planet faces and discover how every small action can contribute to a sustainable future."
-        icon="🌍"
         color="blue"
       />
       <EnvironmentTopics />

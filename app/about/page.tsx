@@ -33,7 +33,6 @@ export default function AboutPage() {
         title="About EcoAware"
         subtitle="Our Story"
         description="We believe that awareness is the first step towards change. Learn about our mission to empower conscious choices."
-        icon="💡"
         color="earth"
       />
       <MissionSection />

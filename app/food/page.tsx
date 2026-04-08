@@ -33,7 +33,6 @@ export default function FoodPage() {
         title="Food & Nutrition"
         subtitle="Eat Well, Live Well"
         description="Explore the power of nutritious eating. What you put on your plate affects your health, your community, and our planet."
-        icon="🥗"
         color="green"
       />
       <FoodTopics />

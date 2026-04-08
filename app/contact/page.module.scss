@@ -6,7 +6,11 @@
 }
 
 .contactSection {
-  padding: 0 0 $spacing-20;
+  padding: $spacing-20 0;
+
+  @include max-md {
+    padding-top: $spacing-4;
+  }
 }
 
 .container {

@@ -26,7 +26,6 @@ export default function ContactPage() {
         title="Get In Touch"
         subtitle="Contact Us"
         description="Have questions, feedback, or ideas? We would love to hear from you. Reach out and let's make a difference together."
-        icon="✉️"
         color="green"
       />
       <section className={styles.contactSection}>
