@@ -23,29 +23,29 @@ export default function CTASection() {
       // Animate content entrance
       gsap.fromTo(
         contentRef.current,
-        { opacity: 0, y: 50, scale: 0.95 },
+        { opacity: 0, y: 80, scale: 0.95 },
         {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 0.8,
-          ease: "power3.out",
+          duration: 1.2,
+          ease: "expo.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 75%",
+            start: "top 80%",
             toggleActions: "play none none reverse",
           },
         },
       );
 
-      // Animate floating elements
+      // Animate floating elements - subtle float
       gsap.to(`.${styles.floatingIcon}`, {
-        y: -20,
-        rotation: 10,
-        duration: 3,
+        y: -30,
+        rotation: 15,
+        duration: 4,
         ease: "sine.inOut",
         stagger: {
-          each: 0.5,
+          each: 0.8,
           repeat: -1,
           yoyo: true,
         },

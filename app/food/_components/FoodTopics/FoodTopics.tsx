@@ -58,23 +58,52 @@ export default function FoodTopics() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        `.${styles.topicCard}`,
-        { opacity: 0, y: 60, rotateX: 10 },
-        {
-          opacity: 1,
-          y: 0,
-          rotateX: 0,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 70%",
-            toggleActions: "play none none reverse",
+      const topicCards = sectionRef.current?.querySelectorAll(`.${styles.topicCard}`);
+
+      if (topicCards) {
+        gsap.fromTo(
+          topicCards,
+          { opacity: 0, y: 80, rotateX: 15 },
+          {
+            opacity: 1,
+            y: 0,
+            rotateX: 0,
+            duration: 1.2,
+            stagger: 0.2,
+            ease: "expo.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 75%",
+              toggleActions: "play none none reverse",
+            },
           },
-        },
-      );
+        );
+
+        // GSAP Hover animations
+        topicCards.forEach((card) => {
+          const icon = card.querySelector(`.${styles.iconWrapper}`);
+          const tl = gsap.timeline({ paused: true });
+
+          tl.to(card, {
+            y: -12,
+            boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
+            duration: 0.4,
+            ease: "power2.out",
+          }).to(
+            icon,
+            {
+              scale: 1.15,
+              rotate: -5,
+              duration: 0.5,
+              ease: "back.out(1.7)",
+            },
+            0,
+          );
+
+          card.addEventListener("mouseenter", () => tl.play());
+          card.addEventListener("mouseleave", () => tl.reverse());
+        });
+      }
     }, sectionRef);
 
     return () => ctx.revert();

@@ -78,31 +78,59 @@ export default function TopicsGrid() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const cards = document.querySelectorAll(`.${styles.topicCard}`);
+      const cards = sectionRef.current?.querySelectorAll(`.${styles.topicCard}`);
 
-      cards.forEach((card, index) => {
+      if (cards) {
         gsap.fromTo(
-          card,
+          cards,
           {
             opacity: 0,
-            y: 60,
-            scale: 0.95,
+            y: 80,
+            scale: 0.9,
           },
           {
             opacity: 1,
             y: 0,
             scale: 1,
-            duration: 0.7,
-            delay: index * 0.1,
-            ease: "power3.out",
+            duration: 1.2,
+            stagger: 0.15,
+            ease: "expo.out",
             scrollTrigger: {
-              trigger: card,
-              start: "top 85%",
+              trigger: sectionRef.current,
+              start: "top 80%",
               toggleActions: "play none none reverse",
             },
           },
         );
-      });
+
+        // GSAP Hover animations
+        cards.forEach((card) => {
+          const icon = card.querySelector(`.${styles.icon}`);
+          const badge = card.querySelector(`.${styles.statBadge}`);
+          const tl = gsap.timeline({ paused: true });
+
+          tl.to(card, {
+            y: -12,
+            boxShadow: "0 20px 48px rgba(0, 0, 0, 0.12)",
+            borderColor: "rgba(16, 185, 129, 0.3)",
+            duration: 0.4,
+            ease: "power2.out",
+          })
+            .to(icon, {
+              scale: 1.2,
+              duration: 0.4,
+              ease: "back.out(1.7)",
+            }, 0)
+            .to(badge, {
+              scale: 1.05,
+              y: -5,
+              duration: 0.4,
+            }, 0);
+
+          card.addEventListener("mouseenter", () => tl.play());
+          card.addEventListener("mouseleave", () => tl.reverse());
+        });
+      }
     }, sectionRef);
 
     return () => ctx.revert();

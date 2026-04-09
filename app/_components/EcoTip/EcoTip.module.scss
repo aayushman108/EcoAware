@@ -1,0 +1,133 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.ecoTip {
+  @include glass-morphism(12px, 0.8);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  padding: $spacing-12 $spacing-6;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: $radius-2xl;
+  
+  @include dark-mode {
+    @include glass-morphism-dark(12px, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  }
+  
+  @include md {
+    padding: $spacing-16 $spacing-12;
+  }
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.label {
+  display: inline-block;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: $spacing-6;
+  padding: $spacing-1 $spacing-4;
+  background: rgba($color-primary-green, 0.1);
+  border-radius: $radius-full;
+  
+  @include dark-mode {
+    background: rgba($color-primary-green, 0.15);
+  }
+}
+
+.tipCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-6;
+}
+
+.icon {
+  font-size: 4.5rem;
+  line-height: 1;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
+  // Remove CSS float animation as it might conflict with GSAP hover scale
+  // We can add a GSAP float instead if needed, but for now let's keep it steady to be smooth
+  
+  @include max-md {
+    font-size: 3.5rem;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-3;
+}
+
+.title {
+  font-family: $font-family-heading;
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  color: var(--color-text);
+  margin: 0;
+  letter-spacing: -0.01em;
+  
+  @include max-md {
+    font-size: $font-size-2xl;
+  }
+}
+
+.description {
+  font-family: $font-family-primary;
+  font-size: $font-size-lg;
+  color: var(--color-text-muted);
+  line-height: $line-height-relaxed;
+  margin: 0;
+  max-width: 600px;
+  margin-inline: auto;
+  
+  @include max-md {
+    font-size: $font-size-base;
+  }
+}
+
+.nextButton {
+  margin-top: $spacing-4;
+
+  // Match the pill-shaped style of the Hero buttons
+  button {
+    border-radius: $radius-full;
+    padding: $spacing-3 $spacing-6;
+    font-size: $font-size-base;
+  }
+}
+
+.decoration {
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  font-size: 15rem;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 1;
+  transform: rotate(15deg);
+  filter: blur(2px);
+  
+  @include dark-mode {
+    opacity: 0.08;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-15px) rotate(5deg);
+  }
+}

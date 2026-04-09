@@ -7,7 +7,6 @@
 "use client";
 
 import { useRef, useLayoutEffect } from "react";
-import Link from "next/link";
 import { gsap } from "gsap";
 import Button from "@/app/components/Button";
 import styles from "./Hero.module.scss";
@@ -21,7 +20,7 @@ export default function Hero() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
 
       // Animate background decorations
       tl.fromTo(
@@ -30,9 +29,9 @@ export default function Hero() {
         {
           scale: 1,
           opacity: 1,
-          duration: 1.2,
+          duration: 1.5,
           stagger: 0.1,
-          ease: "back.out(1.7)",
+          ease: "back.out(1.2)",
         },
         0,
       );
@@ -41,43 +40,43 @@ export default function Hero() {
       tl.from(
         headlineRef.current,
         {
-          y: 60,
+          y: 100,
           opacity: 0,
-          duration: 1,
+          duration: 1.2,
         },
-        0.3,
+        0.2,
       );
 
       // Animate subtitle
       tl.from(
         subtitleRef.current,
         {
-          y: 40,
+          y: 60,
           opacity: 0,
-          duration: 0.8,
+          duration: 1,
         },
-        0.5,
+        0.4,
       );
 
       // Animate buttons
       tl.from(
         buttonsRef.current?.children || [],
         {
-          y: 30,
+          y: 40,
           opacity: 0,
-          duration: 0.6,
-          stagger: 0.15,
+          duration: 0.8,
+          stagger: 0.1,
         },
-        0.7,
+        0.6,
       );
 
-      // Floating animation for decorations
+      // Floating animation for decorations - use more subtle easing
       gsap.to(decorRef.current?.querySelectorAll(".decor-item") || [], {
-        y: -15,
-        duration: 2.5,
+        y: -20,
+        duration: 3,
         ease: "sine.inOut",
         stagger: {
-          each: 0.4,
+          each: 0.5,
           repeat: -1,
           yoyo: true,
         },

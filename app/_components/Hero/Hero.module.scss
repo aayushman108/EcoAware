@@ -5,7 +5,6 @@
   position: relative;
   min-height: 100vh;
   @include flex-center;
-  overflow: hidden;
   padding-top: var(--header-height);
   background: var(--color-bg);
 
@@ -104,7 +103,6 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  overflow: hidden;
   z-index: 0;
 }
 

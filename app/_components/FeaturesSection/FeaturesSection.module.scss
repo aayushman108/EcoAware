@@ -37,7 +37,6 @@
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity $transition-slower;
   pointer-events: none;
   z-index: 0;
   mix-blend-mode: soft-light;
@@ -73,11 +72,6 @@
   height: 100px;
   border-radius: $radius-full; // Circular icons
   margin-bottom: $spacing-2;
-  transition: transform $transition-bounce;
-
-  .card:hover & {
-    transform: scale(1.1) translateY(-5px);
-  }
 }
 
 .coral .iconWrapper {
@@ -136,7 +130,6 @@
 
 .icon {
   font-size: 3rem;
-  transition: transform $transition-base $transition-smooth;
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
 }
 
@@ -193,6 +186,5 @@
 .button {
   margin-top: $spacing-2;
   transform: translateY(10px);
-  opacity: 0.8;
-  transition: all $transition-base $transition-smooth;
+  opacity: 0; // Hide initially, GSAP will handle showing
 }

@@ -57,23 +57,52 @@ export default function ValuesSection() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        `.${styles.valueCard}`,
-        { opacity: 0, y: 50, scale: 0.9 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 70%",
-            toggleActions: "play none none reverse",
+      const cards = sectionRef.current?.querySelectorAll(`.${styles.valueCard}`);
+
+      if (cards) {
+        gsap.fromTo(
+          cards,
+          { opacity: 0, y: 60, scale: 0.9 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1.2,
+            stagger: 0.1,
+            ease: "expo.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 75%",
+              toggleActions: "play none none reverse",
+            },
           },
-        },
-      );
+        );
+
+        // GSAP Hover animations
+        cards.forEach((card) => {
+          const icon = card.querySelector(`.${styles.icon}`);
+          const tl = gsap.timeline({ paused: true });
+
+          tl.to(card, {
+            y: -8,
+            backgroundColor: "rgba(255, 255, 255, 0.1)",
+            boxShadow: "0 10px 30px rgba(0, 0, 0, 0.08)",
+            duration: 0.4,
+            ease: "power2.out",
+          }).to(
+            icon,
+            {
+              scale: 1.25,
+              duration: 0.4,
+              ease: "back.out(1.7)",
+            },
+            0,
+          );
+
+          card.addEventListener("mouseenter", () => tl.play());
+          card.addEventListener("mouseleave", () => tl.reverse());
+        });
+      }
     }, sectionRef);
 
     return () => ctx.revert();

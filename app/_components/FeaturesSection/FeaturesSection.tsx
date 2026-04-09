@@ -69,16 +69,62 @@ export default function FeaturesSection() {
             opacity: 1,
             y: 0,
             scale: 1,
-            duration: 0.8,
-            stagger: 0.2,
-            ease: "power3.out",
+            duration: 1.2,
+            stagger: 0.15,
+            ease: "expo.out",
             scrollTrigger: {
               trigger: cardsRef.current,
-              start: "top 75%",
+              start: "top 80%",
               toggleActions: "play none none reverse",
             },
           },
         );
+
+        // GSAP Hover animations
+        cards.forEach((card) => {
+          const iconWrapper = card.querySelector(`.${styles.iconWrapper}`);
+          const glow = card.querySelector(`.${styles.cardGlow}`);
+          const button = card.querySelector(`.${styles.button}`);
+
+          const tl = gsap.timeline({ paused: true });
+
+          tl.to(card, {
+            y: -12,
+            scale: 1.02,
+            duration: 0.4,
+            ease: "power2.out",
+          })
+            .to(
+              glow,
+              {
+                opacity: 1,
+                duration: 0.4,
+              },
+              0,
+            )
+            .to(
+              iconWrapper,
+              {
+                scale: 1.1,
+                y: -5,
+                duration: 0.5,
+                ease: "back.out(1.7)",
+              },
+              0,
+            )
+            .to(
+              button,
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.4,
+              },
+              0.1,
+            );
+
+          card.addEventListener("mouseenter", () => tl.play());
+          card.addEventListener("mouseleave", () => tl.reverse());
+        });
       }
     }, sectionRef);
 

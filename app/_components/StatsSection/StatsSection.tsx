@@ -53,11 +53,11 @@ export default function StatsSection() {
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          ease: "power3.out",
+          duration: 1.2,
+          ease: "expo.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 80%",
+            start: "top 85%",
             toggleActions: "play none none reverse",
           },
         },
@@ -72,11 +72,11 @@ export default function StatsSection() {
 
         gsap.to(obj, {
           value: target,
-          duration: 2,
+          duration: 2.5,
           ease: "power2.out",
           scrollTrigger: {
             trigger: counter,
-            start: "top 85%",
+            start: "top 90%",
             toggleActions: "play none none none",
           },
           onUpdate: () => {
@@ -86,23 +86,51 @@ export default function StatsSection() {
       });
 
       // Animate stat items
-      gsap.fromTo(
-        `.${styles.statItem}`,
-        { opacity: 0, y: 40, scale: 0.95 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.6,
-          stagger: 0.15,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 70%",
-            toggleActions: "play none none reverse",
+      const statItems = sectionRef.current?.querySelectorAll(`.${styles.statItem}`);
+      if (statItems) {
+        gsap.fromTo(
+          statItems,
+          { opacity: 0, y: 60, scale: 0.9 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1,
+            stagger: 0.15,
+            ease: "expo.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 75%",
+              toggleActions: "play none none reverse",
+            },
           },
-        },
-      );
+        );
+
+        // GSAP Hover animations for stat items
+        statItems.forEach((item) => {
+          const icon = item.querySelector(`.${styles.icon}`);
+          const tl = gsap.timeline({ paused: true });
+
+          tl.to(item, {
+            y: -12,
+            backgroundColor: "rgba(255, 255, 255, 0.08)",
+            duration: 0.4,
+            ease: "power2.out",
+          }).to(
+            icon,
+            {
+              scale: 1.2,
+              rotate: 5,
+              duration: 0.4,
+              ease: "back.out(1.7)",
+            },
+            0,
+          );
+
+          item.addEventListener("mouseenter", () => tl.play());
+          item.addEventListener("mouseleave", () => tl.reverse());
+        });
+      }
     }, sectionRef);
 
     return () => ctx.revert();

@@ -9,6 +9,7 @@ import { generateSEO } from "@/app/lib/seo";
 import PageHero from "../_components/PageHero";
 import EnvironmentTopics from "./_components/EnvironmentTopics";
 import TimelineSection from "./_components/TimelineSection";
+import SocialShare from "@/app/components/SocialShare/SocialShare";
 import styles from "./page.module.scss";
 
 export const metadata: Metadata = generateSEO({
@@ -37,6 +38,13 @@ export default function EnvironmentPage() {
       />
       <EnvironmentTopics />
       <TimelineSection />
+      
+      <div className="container" style={{ maxWidth: '800px', margin: '0 auto' }}>
+        <SocialShare 
+          title="Climate Awareness & Sustainability | EcoAware"
+          description="Every small action counts. Discover how you can contribute to a sustainable future with EcoAware."
+        />
+      </div>
     </div>
   );
 }

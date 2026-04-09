@@ -21,17 +21,17 @@ export default function MissionSection() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         `.${styles.card}`,
-        { opacity: 0, y: 60, scale: 0.95 },
+        { opacity: 0, y: 60, scale: 0.9 },
         {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: "power3.out",
+          duration: 1,
+          stagger: 0.1,
+          ease: "expo.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 70%",
+            start: "top 75%",
             toggleActions: "play none none reverse",
           },
         },

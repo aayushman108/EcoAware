@@ -9,6 +9,7 @@ import { generateSEO } from "@/app/lib/seo";
 import PageHero from "../_components/PageHero";
 import FoodTopics from "./_components/FoodTopics";
 import InfographicSection from "./_components/InfographicSection";
+import SocialShare from "@/app/components/SocialShare/SocialShare";
 import styles from "./page.module.scss";
 
 export const metadata: Metadata = generateSEO({
@@ -37,6 +38,13 @@ export default function FoodPage() {
       />
       <FoodTopics />
       <InfographicSection />
+      
+      <div className="container" style={{ maxWidth: '800px', margin: '0 auto' }}>
+        <SocialShare 
+          title="Sustainable Food & Nutrition | EcoAware"
+          description="Learn how sustainable food choices can benefit your health and the planet."
+        />
+      </div>
     </div>
   );
 }

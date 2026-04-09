@@ -21,9 +21,9 @@ const footerLinks = {
     { label: "Privacy Policy", href: "/privacy" },
   ],
   resources: [
-    { label: "Articles", href: "#" },
-    { label: "Research", href: "#" },
-    { label: "Events", href: "#" },
+    { label: "Nutrition Guide", href: "https://www.healthline.com/nutrition" },
+    { label: "Eco News", href: "https://www.treehugger.com/" },
+    { label: "Carbon Footprint", href: "https://www.footprintnetwork.org/resources/footprint-calculator/" },
   ],
 };
 
