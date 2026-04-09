@@ -6,7 +6,7 @@
 
 "use client";
 
-import { useState, useRef, useLayoutEffect, FormEvent } from "react";
+import { useState, useEffect, useRef, useLayoutEffect, FormEvent } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Button from "@/app/components/Button";
@@ -26,10 +26,12 @@ interface FormErrors {
   email?: string;
   subject?: string;
   message?: string;
+  submit?: string;
 }
 
 export default function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -39,6 +41,7 @@ export default function ContactForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -61,6 +64,23 @@ export default function ContactForm() {
 
     return () => ctx.revert();
   }, []);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    if (isDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isDropdownOpen]);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -103,6 +123,27 @@ export default function ContactForm() {
     }
   };
 
+  const handleSelect = (value: string) => {
+    setFormData((prev) => ({ ...prev, subject: value }));
+    setIsDropdownOpen(false);
+    if (errors.subject) {
+      setErrors((prev) => ({ ...prev, subject: undefined }));
+    }
+  };
+
+  const subjectOptions = [
+    { value: "general", label: "General Inquiry" },
+    { value: "health", label: "Health & Wellness" },
+    { value: "nutrition", label: "Food & Nutrition" },
+    { value: "environment", label: "Environment & Climate" },
+    { value: "partnership", label: "Partnership Opportunity" },
+    { value: "feedback", label: "Feedback & Suggestions" },
+  ];
+
+  const currentSubject = subjectOptions.find(
+    (opt) => opt.value === formData.subject,
+  );
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
@@ -110,17 +151,41 @@ export default function ContactForm() {
       return;
     }
 
+    setErrors((prev) => ({ ...prev, submit: undefined }));
     setIsSubmitting(true);
 
-    // Simulate form submission (no backend)
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setFormData({ name: "", email: "", subject: "", message: "" });
+      const result = (await response.json()) as { error?: string };
 
-    // Reset success message after 5 seconds
-    setTimeout(() => setIsSubmitted(false), 5000);
+      if (!response.ok) {
+        setErrors((prev) => ({
+          ...prev,
+          submit: result.error ?? "Failed to send message. Please try again.",
+        }));
+        return;
+      }
+
+      setIsSubmitted(true);
+      setFormData({ name: "", email: "", subject: "", message: "" });
+
+      // Reset success message after 5 seconds
+      setTimeout(() => setIsSubmitted(false), 5000);
+    } catch {
+      setErrors((prev) => ({
+        ...prev,
+        submit: "Network error. Please check your connection and try again.",
+      }));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -137,119 +202,185 @@ export default function ContactForm() {
       </p>
 
       {isSubmitted && (
-        <div className={styles.successMessage} role="alert">
-          <span className={styles.successIcon}>✓</span>
-          <span>Thank you! Your message has been sent successfully.</span>
+        <div className={styles.successState} role="status" aria-live="polite">
+          <div className={styles.successIconLarge} aria-hidden="true">
+            ✓
+          </div>
+          <h3 className={styles.successTitle}>Message Sent Successfully</h3>
+          <p className={styles.successText}>
+            Thank you for reaching out. We received your message and will reply
+            within 48 hours.
+          </p>
+          <button
+            type="button"
+            className={styles.sendAnotherButton}
+            onClick={() => setIsSubmitted(false)}
+          >
+            Send another message
+          </button>
+        </div>
+      )}
+      {errors.submit && (
+        <div className={styles.submitError} role="alert">
+          {errors.submit}
         </div>
       )}
 
-      <div className={styles.formGrid}>
-        {/* Name Field */}
-        <div className={styles.formGroup}>
-          <label htmlFor="contact-name" className={styles.label}>
-            Your Name <span className={styles.required}>*</span>
-          </label>
-          <input
-            type="text"
-            id="contact-name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className={`${styles.input} ${errors.name ? styles.inputError : ""}`}
-            placeholder="John Doe"
-            aria-required="true"
-            aria-invalid={!!errors.name}
-            aria-describedby={errors.name ? "name-error" : undefined}
-          />
-          {errors.name && (
-            <span id="name-error" className={styles.errorMessage} role="alert">
-              {errors.name}
-            </span>
-          )}
-        </div>
+      {!isSubmitted && (
+        <>
+          <div className={styles.formFields}>
+            <div className={styles.formGrid}>
+              {/* Name Field */}
+              <div className={styles.formGroup}>
+                <label htmlFor="contact-name" className={styles.label}>
+                  Your Name <span className={styles.required}>*</span>
+                </label>
+                <input
+                  type="text"
+                  id="contact-name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className={`${styles.input} ${errors.name ? styles.inputError : ""}`}
+                  placeholder="John Doe"
+                  aria-required="true"
+                  aria-invalid={!!errors.name}
+                  aria-describedby={errors.name ? "name-error" : undefined}
+                />
+                {errors.name && (
+                  <span
+                    id="name-error"
+                    className={styles.errorMessage}
+                    role="alert"
+                  >
+                    {errors.name}
+                  </span>
+                )}
+              </div>
 
-        {/* Email Field */}
-        <div className={styles.formGroup}>
-          <label htmlFor="contact-email" className={styles.label}>
-            Email Address <span className={styles.required}>*</span>
-          </label>
-          <input
-            type="email"
-            id="contact-email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className={`${styles.input} ${errors.email ? styles.inputError : ""}`}
-            placeholder="john@example.com"
-            aria-required="true"
-            aria-invalid={!!errors.email}
-            aria-describedby={errors.email ? "email-error" : undefined}
-          />
-          {errors.email && (
-            <span id="email-error" className={styles.errorMessage} role="alert">
-              {errors.email}
-            </span>
-          )}
-        </div>
-      </div>
+              {/* Email Field */}
+              <div className={styles.formGroup}>
+                <label htmlFor="contact-email" className={styles.label}>
+                  Email Address <span className={styles.required}>*</span>
+                </label>
+                <input
+                  type="email"
+                  id="contact-email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className={`${styles.input} ${errors.email ? styles.inputError : ""}`}
+                  placeholder="john@example.com"
+                  aria-required="true"
+                  aria-invalid={!!errors.email}
+                  aria-describedby={errors.email ? "email-error" : undefined}
+                />
+                {errors.email && (
+                  <span
+                    id="email-error"
+                    className={styles.errorMessage}
+                    role="alert"
+                  >
+                    {errors.email}
+                  </span>
+                )}
+              </div>
+            </div>
 
-      {/* Subject Field */}
-      <div className={styles.formGroup}>
-        <label htmlFor="contact-subject" className={styles.label}>
-          Subject <span className={styles.required}>*</span>
-        </label>
-        <select
-          id="contact-subject"
-          name="subject"
-          value={formData.subject}
-          onChange={handleChange}
-          className={`${styles.input} ${styles.select} ${errors.subject ? styles.inputError : ""}`}
-          aria-required="true"
-          aria-invalid={!!errors.subject}
-          aria-describedby={errors.subject ? "subject-error" : undefined}
-        >
-          <option value="">Select a topic...</option>
-          <option value="general">General Inquiry</option>
-          <option value="health">Health & Wellness</option>
-          <option value="nutrition">Food & Nutrition</option>
-          <option value="environment">Environment & Climate</option>
-          <option value="partnership">Partnership Opportunity</option>
-          <option value="feedback">Feedback & Suggestions</option>
-        </select>
-        {errors.subject && (
-          <span id="subject-error" className={styles.errorMessage} role="alert">
-            {errors.subject}
-          </span>
-        )}
-      </div>
+            {/* Subject Field */}
+            <div className={styles.formGroup}>
+              <label htmlFor="contact-subject" className={styles.label}>
+                Subject <span className={styles.required}>*</span>
+              </label>
+              <div className={styles.selectWrapper} ref={dropdownRef}>
+                <button
+                  type="button"
+                  className={`${styles.selectButton} ${isDropdownOpen ? styles.active : ""} ${errors.subject ? styles.inputError : ""}`}
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  aria-haspopup="listbox"
+                  aria-expanded={isDropdownOpen}
+                  aria-labelledby="contact-subject-label"
+                >
+                  <span className={styles.selectValue}>
+                    {currentSubject ? currentSubject.label : "Select a topic..."}
+                  </span>
+                  <svg
+                    className={styles.arrowIcon}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="3"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
 
-      {/* Message Field */}
-      <div className={styles.formGroup}>
-        <label htmlFor="contact-message" className={styles.label}>
-          Your Message <span className={styles.required}>*</span>
-        </label>
-        <textarea
-          id="contact-message"
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          className={`${styles.input} ${styles.textarea} ${errors.message ? styles.inputError : ""}`}
-          placeholder="Tell us how we can help..."
-          rows={5}
-          aria-required="true"
-          aria-invalid={!!errors.message}
-          aria-describedby={errors.message ? "message-error" : undefined}
-        />
-        {errors.message && (
-          <span id="message-error" className={styles.errorMessage} role="alert">
-            {errors.message}
-          </span>
-        )}
-      </div>
+                {isDropdownOpen && (
+                  <div className={styles.dropdown} role="listbox">
+                    {subjectOptions.map((option) => (
+                      <button
+                        key={option.value}
+                        type="button"
+                        className={`${styles.dropdownOption} ${formData.subject === option.value ? styles.selected : ""}`}
+                        onClick={() => handleSelect(option.value)}
+                        role="option"
+                        aria-selected={formData.subject === option.value}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+              {errors.subject && (
+                <span
+                  id="subject-error"
+                  className={styles.errorMessage}
+                  role="alert"
+                >
+                  {errors.subject}
+                </span>
+              )}
+            </div>
 
-      <Button type="submit" size="lg" loading={isSubmitting} fullWidth>
-        {isSubmitting ? "Sending..." : "Send Message"}
-      </Button>
+            {/* Message Field */}
+            <div className={styles.formGroup}>
+              <label htmlFor="contact-message" className={styles.label}>
+                Your Message <span className={styles.required}>*</span>
+              </label>
+              <textarea
+                id="contact-message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                className={`${styles.input} ${styles.textarea} ${errors.message ? styles.inputError : ""}`}
+                placeholder="Tell us how we can help..."
+                rows={5}
+                aria-required="true"
+                aria-invalid={!!errors.message}
+                aria-describedby={errors.message ? "message-error" : undefined}
+              />
+              {errors.message && (
+                <span
+                  id="message-error"
+                  className={styles.errorMessage}
+                  role="alert"
+                >
+                  {errors.message}
+                </span>
+              )}
+            </div>
+          </div>
+
+          <Button type="submit" size="lg" loading={isSubmitting} fullWidth>
+            {isSubmitting ? "Sending..." : "Send Message"}
+          </Button>
+        </>
+      )}
     </form>
   );
 }

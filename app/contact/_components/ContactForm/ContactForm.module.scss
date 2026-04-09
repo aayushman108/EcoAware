@@ -6,161 +6,398 @@
 .form {
   background: var(--color-surface);
   border-radius: $radius-2xl;
-  padding: $spacing-10;
-  box-shadow: $shadow-lg;
+  padding: $spacing-12;
+  box-shadow: $shadow-xl;
   border: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
 
   @include dark-mode {
-    background: $color-dark-surface;
-    border-color: $color-dark-border;
+    background: rgba($color-dark-surface, 0.8);
+    backdrop-filter: blur(12px);
+    border-color: rgba($color-white, 0.05);
   }
 
   @include max-sm {
-    padding: $spacing-6;
+    padding: $spacing-8 $spacing-6;
   }
 }
 
 .formTitle {
   font-family: $font-family-heading;
-  font-size: $font-size-2xl;
+  font-size: $font-size-3xl;
   font-weight: $font-weight-bold;
   color: var(--color-text);
-  margin-bottom: $spacing-2;
+  margin-bottom: $spacing-3;
+  letter-spacing: -0.02em;
 }
 
 .formDescription {
   font-size: $font-size-base;
   color: var(--color-text-muted);
-  margin-bottom: $spacing-8;
+  margin-bottom: $spacing-12;
+  line-height: $line-height-relaxed;
 }
 
-.successMessage {
-  display: flex;
+.successState {
+  @include flex-column;
   align-items: center;
-  gap: $spacing-3;
-  padding: $spacing-4;
-  background: rgba($color-primary-green, 0.1);
-  color: $color-primary-green;
-  border-radius: $radius-lg;
-  font-size: $font-size-sm;
-  font-weight: $font-weight-medium;
-  margin-bottom: $spacing-6;
+  text-align: center;
+  gap: $spacing-6;
+  padding: $spacing-12 $spacing-8;
+  border-radius: $radius-2xl;
+  border: 1px solid rgba($color-primary-green, 0.2);
+  background: linear-gradient(
+    145deg,
+    rgba($color-primary-green, 0.1) 0%,
+    rgba($color-secondary-blue, 0.05) 100%
+  );
+  animation: successFadeIn 0.6s $transition-spring;
 
   @include dark-mode {
-    background: rgba($color-primary-green-accent, 0.15);
-    color: $color-primary-green-accent;
+    border-color: rgba($color-primary-green-accent, 0.2);
+    background: linear-gradient(
+      145deg,
+      rgba($color-primary-green-accent, 0.1) 0%,
+      rgba($color-secondary-blue, 0.08) 100%
+    );
   }
 }
 
-.successIcon {
+.successIconLarge {
   @include flex-center;
-  width: 24px;
-  height: 24px;
+  width: 80px;
+  height: 80px;
   border-radius: $radius-full;
-  background: $color-primary-green;
-  color: $color-white;
-  font-size: 0.75rem;
+  font-size: 2rem;
   font-weight: $font-weight-bold;
-  flex-shrink: 0;
+  color: $color-white;
+  background: $gradient-primary;
+  box-shadow: 0 15px 35px rgba($color-primary-green, 0.3);
+  margin-bottom: $spacing-2;
+}
 
-  @include dark-mode {
-    background: $color-primary-green-accent;
+.successTitle {
+  font-family: $font-family-heading;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-bold;
+  color: var(--color-text);
+}
+
+.successText {
+  max-width: 440px;
+  font-size: $font-size-base;
+  line-height: $line-height-relaxed;
+  color: var(--color-text-muted);
+}
+
+.sendAnotherButton {
+  border: 0;
+  cursor: pointer;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-sm;
+  border-radius: $radius-full;
+  padding: $spacing-4 $spacing-8;
+  color: $color-white;
+  background: $gradient-primary;
+  transition: all $transition-base;
+  box-shadow: 0 4px 15px rgba($color-primary-green, 0.2);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba($color-primary-green, 0.3);
+    background: $gradient-primary-hover;
   }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-8;
+  margin-bottom: $spacing-10;
 }
 
 .formGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: $spacing-6;
-  margin-bottom: $spacing-6;
+  gap: $spacing-8;
 
   @include max-sm {
     grid-template-columns: 1fr;
+    gap: $spacing-8;
   }
 }
 
 .formGroup {
   @include flex-column;
-  gap: $spacing-2;
-  margin-bottom: $spacing-6;
+  gap: $spacing-3;
+  transition: transform $transition-fast;
 
-  &:last-of-type {
-    margin-bottom: $spacing-8;
+  &:focus-within {
+    .label {
+      color: var(--color-primary);
+    }
   }
 }
 
 .label {
   font-size: $font-size-sm;
-  font-weight: $font-weight-medium;
+  font-weight: $font-weight-semibold;
   color: var(--color-text);
+  margin-left: $spacing-1;
+  transition: color $transition-fast;
 }
 
 .required {
   color: $color-accent-coral;
+  margin-left: $spacing-1;
 }
 
 .input {
   width: 100%;
-  padding: $spacing-4;
+  padding: $spacing-4 $spacing-5;
   font-size: $font-size-base;
   font-family: $font-family-primary;
   color: var(--color-text);
   background: var(--color-bg);
   border: 2px solid var(--color-border);
-  border-radius: $radius-lg;
-  transition: all $transition-fast;
+  border-radius: $radius-xl;
+  transition: all $transition-base;
+  box-shadow: $shadow-sm;
 
   @include dark-mode {
-    background: $color-dark-surface-light;
-    border-color: $color-dark-border;
+    background: rgba($color-dark-surface-light, 0.5);
+    border-color: rgba($color-white, 0.1);
   }
 
   &::placeholder {
     color: var(--color-text-light);
+    opacity: 0.6;
+  }
+
+  &:hover:not(:focus):not(.inputError) {
+    border-color: var(--color-text-muted);
+    background: var(--color-surface);
+
+    @include dark-mode {
+      border-color: rgba($color-white, 0.2);
+    }
   }
 
   &:focus {
     outline: none;
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba($color-primary-green, 0.1);
+    background: var(--color-surface);
+    box-shadow: 0 0 0 4px rgba($color-primary-green, 0.15);
+    transform: translateY(-1px);
+
+    @include dark-mode {
+      background: $color-dark-surface-light;
+      box-shadow: 0 0 0 4px rgba($color-primary-green-accent, 0.1);
+    }
+  }
+}
+
+.selectWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.selectButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-4 $spacing-5;
+  font-size: $font-size-base;
+  font-family: $font-family-primary;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 2px solid var(--color-border);
+  border-radius: $radius-xl;
+  cursor: pointer;
+  transition: all $transition-base;
+  text-align: left;
+
+  @include dark-mode {
+    background: rgba($color-dark-surface-light, 0.5);
+    border-color: rgba($color-white, 0.1);
   }
 
   &:hover:not(:focus) {
-    border-color: var(--color-text-light);
+    border-color: var(--color-text-muted);
+    background: var(--color-surface);
   }
-}
-
-.inputError {
-  border-color: $color-accent-coral !important;
 
   &:focus {
-    box-shadow: 0 0 0 3px rgba($color-accent-coral, 0.1);
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba($color-primary-green, 0.15);
+
+    @include dark-mode {
+      box-shadow: 0 0 0 4px rgba($color-primary-green-accent, 0.1);
+    }
+  }
+
+  &.active {
+    border-color: var(--color-primary);
+    background: var(--color-surface);
+
+    .arrowIcon {
+      transform: rotate(180deg);
+      color: var(--color-primary);
+    }
   }
 }
 
-.select {
+.arrowIcon {
+  width: 14px;
+  height: 14px;
+  color: $color-primary-green;
+  transition: transform $transition-base;
+  flex-shrink: 0;
+  margin-left: $spacing-2;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + $spacing-2);
+  left: 0;
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: $radius-xl;
+  box-shadow: $shadow-xl;
+  z-index: $z-dropdown;
+  padding: $spacing-2;
+  overflow: hidden;
+  animation: dropdownFadeIn 0.25s $transition-smooth;
+
+  @include dark-mode {
+    background: $color-dark-surface-elevated;
+    border-color: rgba($color-white, 0.1);
+  }
+}
+
+.dropdownOption {
+  width: 100%;
+  padding: $spacing-3 $spacing-4;
+  font-size: $font-size-sm;
+  color: var(--color-text);
+  border-radius: $radius-lg;
   cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236c757d' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right $spacing-4 center;
-  padding-right: $spacing-10;
+  transition: all $transition-fast;
+  text-align: left;
+  border: 0;
+  background: transparent;
+
+  &:hover {
+    background: rgba($color-primary-green, 0.1);
+    color: var(--color-primary);
+
+    @include dark-mode {
+      background: rgba($color-primary-green-accent, 0.1);
+      color: $color-primary-green-accent;
+    }
+  }
+
+  &.selected {
+    background: $gradient-primary;
+    color: $color-white;
+    font-weight: $font-weight-semibold;
+
+    &:hover {
+      background: $gradient-primary-hover;
+      color: $color-white;
+    }
+  }
 }
 
 .textarea {
   resize: vertical;
-  min-height: 140px;
+  min-height: 160px;
+  line-height: $line-height-relaxed;
+}
+
+.inputError {
+  border-color: rgba($color-accent-coral, 0.5) !important;
+  background: rgba($color-accent-coral, 0.02) !important;
+
+  &:focus {
+    box-shadow: 0 0 0 4px rgba($color-accent-coral, 0.15) !important;
+  }
 }
 
 .errorMessage {
   font-size: $font-size-xs;
   color: $color-accent-coral;
+  font-weight: $font-weight-medium;
   display: flex;
   align-items: center;
-  gap: $spacing-1;
+  gap: $spacing-2;
+  margin-top: $spacing-1;
+  margin-left: $spacing-1;
+
+  &::before {
+    content: "!";
+    width: 14px;
+    height: 14px;
+    background: $color-accent-coral;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+  }
+}
+
+.submitError {
+  padding: $spacing-5;
+  margin-bottom: $spacing-8;
+  border-radius: $radius-xl;
+  border: 1px solid rgba($color-accent-coral, 0.3);
+  background: rgba($color-accent-coral, 0.05);
+  color: $color-accent-coral;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
 
   &::before {
     content: "⚠";
-    font-size: 0.75rem;
+    font-size: 1.2rem;
+  }
+
+  @include dark-mode {
+    background: rgba($color-accent-coral, 0.1);
+  }
+}
+
+@keyframes successFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

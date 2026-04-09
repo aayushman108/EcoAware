@@ -46,10 +46,7 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menu on route change
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [pathname]);
+  const closeMenu = () => setIsMenuOpen(false);
 
   // Animate menu open/close
   useEffect(() => {
@@ -102,7 +99,12 @@ export default function Header() {
       role="banner"
     >
       <nav className={styles.nav} aria-label="Main navigation">
-        <Link href="/" className={styles.logo} aria-label="Home - EcoAware">
+        <Link
+          href="/"
+          className={styles.logo}
+          aria-label="Home - EcoAware"
+          onClick={closeMenu}
+        >
           <span className={styles.logoIcon}>🌿</span>
           <span className={styles.logoText}>EcoAware</span>
         </Link>
@@ -116,6 +118,7 @@ export default function Header() {
                 className={`${styles.navLink} ${isActive(link.href) ? styles.active : ""}`}
                 role="menuitem"
                 aria-current={isActive(link.href) ? "page" : undefined}
+                onClick={closeMenu}
               >
                 {link.label}
                 <span className={styles.linkUnderline} aria-hidden="true" />
@@ -164,6 +167,7 @@ export default function Header() {
                   className={`${styles.mobileNavLink} ${isActive(link.href) ? styles.active : ""}`}
                   role="menuitem"
                   tabIndex={isMenuOpen ? 0 : -1}
+                  onClick={closeMenu}
                 >
                   {link.label}
                 </Link>
