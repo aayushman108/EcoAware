@@ -102,11 +102,11 @@ export default function Header() {
         <Link
           href="/"
           className={styles.logo}
-          aria-label="Home - EcoAware"
+          aria-label="Home - Envoware"
           onClick={closeMenu}
         >
           <span className={styles.logoIcon}>🌿</span>
-          <span className={styles.logoText}>EcoAware</span>
+          <span className={styles.logoText}>Envoware</span>
         </Link>
 
         {/* Desktop Navigation */}

@@ -15,8 +15,8 @@ interface SEOConfig {
   type?: "website" | "article";
 }
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://ecoaware.org";
-const SITE_NAME = "EcoAware";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://envoware.netlify.app";
+const SITE_NAME = "Envoware";
 const DEFAULT_IMAGE = `${BASE_URL}/og-image.png`;
 
 /**
@@ -45,9 +45,9 @@ export function generateSEO({
       "wellness",
       ...keywords,
     ],
-    authors: [{ name: SITE_NAME }],
-    creator: SITE_NAME,
-    publisher: SITE_NAME,
+    authors: [{ name: "Aayushman" }],
+    creator: "Aayushman",
+    publisher: "Aayushman",
     formatDetection: {
       email: false,
       address: false,
@@ -78,7 +78,7 @@ export function generateSEO({
       title: fullTitle,
       description,
       images: [image],
-      creator: "@ecoaware",
+      creator: "@envoware",
     },
     robots: {
       index: true,
@@ -100,5 +100,5 @@ export function generateSEO({
 export const defaultMetadata: Metadata = generateSEO({
   title: "Home",
   description:
-    "EcoAware - Your guide to conscious living. Learn about health, nutrition, and environmental sustainability for a better tomorrow.",
+    "Envoware - Your guide to conscious living. Learn about health, nutrition, and environmental sustainability for a better tomorrow.",
 });

@@ -14,7 +14,7 @@ import styles from "./page.module.scss";
 export const metadata: Metadata = generateSEO({
   title: "Contact Us",
   description:
-    "Get in touch with EcoAware. We would love to hear from you about health, nutrition, or environmental topics.",
+    "Get in touch with Envoware. We would love to hear from you about health, nutrition, or environmental topics.",
   keywords: ["contact", "get in touch", "feedback", "support"],
   url: "/contact",
 });

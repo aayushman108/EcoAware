@@ -75,7 +75,7 @@ export async function POST(request: Request) {
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;">
           <tr>
             <td style="padding:20px 24px;background:linear-gradient(135deg,#10b981 0%,#0ea5e9 100%);color:#ffffff;">
-              <div style="font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.95;">EcoAware</div>
+              <div style="font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.95;">Envoware</div>
               <div style="font-size:24px;line-height:1.2;font-weight:700;margin-top:6px;">New Contact Form Submission</div>
             </td>
           </tr>
@@ -107,7 +107,7 @@ export async function POST(request: Request) {
               </div>
 
               <div style="margin-top:20px;font-size:12px;color:#94a3b8;">
-                Sent via EcoAware contact form.
+                Sent via Envoware contact form.
               </div>
             </td>
           </tr>

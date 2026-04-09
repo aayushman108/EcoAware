@@ -42,8 +42,8 @@ export default function HealthPage() {
       
       <div className="container" style={{ maxWidth: '800px', margin: '0 auto' }}>
         <SocialShare 
-          title="Foundations of Health & Wellness | EcoAware"
-          description="Check out these science-backed insights on physical and mental well-being from EcoAware."
+          title="Foundations of Health & Wellness | Envoware"
+          description="Check out these science-backed insights on physical and mental well-being from Envoware."
         />
       </div>
     </div>

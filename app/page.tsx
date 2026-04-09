@@ -18,7 +18,7 @@ import CTASection from "./_components/CTASection";
 export const metadata: Metadata = generateSEO({
   title: "Home",
   description:
-    "EcoAware - Your guide to conscious living. Discover insights on health, nutritious food, and environmental sustainability for a better tomorrow.",
+    "Envoware - Your guide to conscious living. Discover insights on health, nutritious food, and environmental sustainability for a better tomorrow.",
   keywords: [
     "conscious living",
     "sustainable lifestyle",

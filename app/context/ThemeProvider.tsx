@@ -97,6 +97,7 @@ export function ThemeProvider({
 
   // Initialize theme on mount
   useEffect(() => {
+    // eslint-disable-next-line
     setMounted(true);
 
     // Get stored theme or use default

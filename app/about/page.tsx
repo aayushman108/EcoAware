@@ -15,7 +15,7 @@ import ValuesSection from "./_components/ValuesSection";
 export const metadata: Metadata = generateSEO({
   title: "About Us",
   description:
-    "Learn about EcoAware - our mission to spread awareness about health, nutrition, and environmental sustainability for a better tomorrow.",
+    "Learn about Envoware - our mission to spread awareness about health, nutrition, and environmental sustainability for a better tomorrow.",
   keywords: [
     "about",
     "mission",
@@ -30,7 +30,7 @@ export default function AboutPage() {
   return (
     <div className={styles.aboutPage}>
       <PageHero
-        title="About EcoAware"
+        title="About Envoware"
         subtitle="Our Story"
         description="We believe that awareness is the first step towards change. Learn about our mission to empower conscious choices."
         color="earth"

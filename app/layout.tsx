@@ -10,6 +10,7 @@ import { ThemeProvider } from "@/app/context/ThemeProvider";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { defaultMetadata } from "@/app/lib/seo";
+import ServiceWorkerRegister from "@/app/components/ServiceWorkerRegister";
 import "@/app/styles/globals.scss";
 
 export const metadata: Metadata = {
@@ -66,8 +67,8 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "name": "EcoAware",
-              "url": "https://ecoaware.org",
+              "name": "Envoware",
+              "url": "https://envoware.netlify.app",
               "description": "Your guide to conscious living, health, and environmental sustainability.",
               "potentialAction": {
                 "@type": "SearchAction",
@@ -80,6 +81,7 @@ export default function RootLayout({
       </head>
       <body>
         <ThemeProvider defaultTheme="system">
+          <ServiceWorkerRegister />
           {/* Skip to main content link for accessibility */}
           <a href="#main-content" className="skip-link">
             Skip to main content

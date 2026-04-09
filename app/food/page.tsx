@@ -41,7 +41,7 @@ export default function FoodPage() {
       
       <div className="container" style={{ maxWidth: '800px', margin: '0 auto' }}>
         <SocialShare 
-          title="Sustainable Food & Nutrition | EcoAware"
+          title="Sustainable Food & Nutrition | Envoware"
           description="Learn how sustainable food choices can benefit your health and the planet."
         />
       </div>

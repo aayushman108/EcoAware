@@ -109,6 +109,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
     );
 
     if (props.as === "link") {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { href, external, as: _, ...linkProps } = rest as ButtonAsLink;
 
       if (external) {
@@ -138,6 +139,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
       );
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { as: _, ...buttonProps } = rest as ButtonAsButton;
 
     return (

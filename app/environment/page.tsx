@@ -41,8 +41,8 @@ export default function EnvironmentPage() {
       
       <div className="container" style={{ maxWidth: '800px', margin: '0 auto' }}>
         <SocialShare 
-          title="Climate Awareness & Sustainability | EcoAware"
-          description="Every small action counts. Discover how you can contribute to a sustainable future with EcoAware."
+          title="Climate Awareness & Sustainability | Envoware"
+          description="Every small action counts. Discover how you can contribute to a sustainable future with Envoware."
         />
       </div>
     </div>

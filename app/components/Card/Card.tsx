@@ -6,6 +6,7 @@
 
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
 import { ReactNode, useRef } from "react";
 import Link from "next/link";
 import styles from "./Card.module.scss";
@@ -22,7 +23,6 @@ interface CardProps {
   color?: "green" | "blue" | "earth" | "coral";
   className?: string;
   children?: ReactNode;
-  animate?: boolean;
 }
 
 export default function Card({
@@ -35,7 +35,6 @@ export default function Card({
   color = "green",
   className = "",
   children,
-  animate = true,
 }: CardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
 

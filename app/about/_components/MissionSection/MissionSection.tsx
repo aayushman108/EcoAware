@@ -90,7 +90,7 @@ export default function MissionSection() {
           <p className={styles.purposeText}>
             In a world facing unprecedented challenges — from climate change to
             public health crises — we recognized the need for a trusted platform
-            that cuts through the noise. EcoAware was founded to bridge the gap
+            that cuts through the noise. Envoware was founded to bridge the gap
             between complex science and everyday choices, making it easier for
             everyone to live more consciously.
           </p>

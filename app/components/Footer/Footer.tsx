@@ -46,7 +46,7 @@ export default function Footer() {
           <div className={styles.brand}>
             <Link href="/" className={styles.logo}>
               <span className={styles.logoIcon}>🌿</span>
-              <span className={styles.logoText}>EcoAware</span>
+              <span className={styles.logoText}>Envoware</span>
             </Link>
             <p className={styles.tagline}>
               Empowering conscious choices for a healthier you and a sustainable
@@ -139,7 +139,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className={styles.bottom}>
           <p className={styles.copyright}>
-            © {currentYear} EcoAware. All rights reserved.
+            © {currentYear} Envoware. All rights reserved.
           </p>
           <p className={styles.madeWith}>Made with 💚 for a greener future</p>
         </div>
