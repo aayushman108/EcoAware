@@ -6,6 +6,7 @@
 
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import styles from "./Footer.module.scss";
 
@@ -36,6 +37,39 @@ const socialLinks = [
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setStatus("loading");
+    setError(null);
+
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Something went wrong. Please try again.");
+      }
+
+      setStatus("success");
+      setEmail("");
+      // Reset success message after 5 seconds
+      setTimeout(() => setStatus("idle"), 5000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to subscribe");
+      setStatus("idle");
+    }
+  };
 
   return (
     <footer className={styles.footer} role="contentinfo">
@@ -118,21 +152,33 @@ export default function Footer() {
             <p className={styles.newsletterText}>
               Get weekly insights on health, nutrition, and sustainability.
             </p>
-            <form
-              className={styles.newsletterForm}
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className={styles.newsletterInput}
-                aria-label="Email address for newsletter"
-                required
-              />
-              <button type="submit" className={styles.newsletterButton}>
-                Subscribe
-              </button>
-            </form>
+            {status === "success" ? (
+              <div className={styles.successMessage}>
+                <span className={styles.successIcon}>✨</span>
+                <p>Thanks for subscribing! Check your inbox soon.</p>
+              </div>
+            ) : (
+              <form className={styles.newsletterForm} onSubmit={handleSubmit}>
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className={styles.newsletterInput}
+                  aria-label="Email address for newsletter"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={status === "loading"}
+                  required
+                />
+                <button
+                  type="submit"
+                  className={styles.newsletterButton}
+                  disabled={status === "loading"}
+                >
+                  {status === "loading" ? "Subscribing..." : "Subscribe"}
+                </button>
+              </form>
+            )}
+            {error && <p className={styles.errorMessage}>{error}</p>}
           </div>
         </div>
 

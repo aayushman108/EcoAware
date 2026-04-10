@@ -226,6 +226,52 @@
     transform: translateY(-2px);
     box-shadow: $shadow-glow-green;
   }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: default;
+    transform: none;
+  }
+}
+
+.successMessage {
+  @include flex-center;
+  gap: $spacing-3;
+  padding: $spacing-4;
+  background: rgba($color-primary-green, 0.1);
+  border: 1px solid rgba($color-primary-green, 0.2);
+  border-radius: $radius-lg;
+  animation: fadeInDown 0.5s ease forwards;
+
+  p {
+    font-size: $font-size-sm;
+    color: var(--color-primary);
+    font-weight: $font-weight-medium;
+    margin: 0;
+  }
+}
+
+.successIcon {
+  font-size: 1.25rem;
+}
+
+.errorMessage {
+  font-size: $font-size-xs;
+  color: #ef4444; // Red-500
+  margin-top: $spacing-2;
+  font-weight: $font-weight-medium;
+  animation: fadeInDown 0.3s ease forwards;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 // Bottom Bar
