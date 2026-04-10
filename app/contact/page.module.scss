@@ -9,7 +9,8 @@
   padding: $spacing-20 0;
 
   @include max-md {
-    padding-top: $spacing-4;
+    padding-top: $spacing-12;
+    padding-bottom: $spacing-12;
   }
 }
 
@@ -25,5 +26,9 @@
   @include max-lg {
     grid-template-columns: 1fr;
     gap: $spacing-10;
+  }
+
+  @include max-sm {
+    gap: $spacing-8;
   }
 }

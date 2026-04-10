@@ -50,6 +50,7 @@
 .detailContent {
   @include flex-column;
   gap: $spacing-1;
+  min-width: 0; // Allow content to shrink and wrap
 }
 
 .detailLabel {
@@ -65,6 +66,8 @@
   font-weight: $font-weight-medium;
   text-decoration: none;
   transition: color $transition-fast;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 
   &:hover {
     color: var(--color-primary);
