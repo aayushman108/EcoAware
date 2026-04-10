@@ -49,9 +49,9 @@ export default function StatsSection() {
       // Animate section entrance
       gsap.fromTo(
         sectionRef.current,
-        { opacity: 0, y: 50 },
+        { autoAlpha: 0, y: 50 },
         {
-          opacity: 1,
+          autoAlpha: 1,
           y: 0,
           duration: 1.2,
           ease: "expo.out",
@@ -86,13 +86,13 @@ export default function StatsSection() {
       });
 
       // Animate stat items
-      const statItems = sectionRef.current?.querySelectorAll(`.${styles.statItem}`);
+      const statItems = sectionRef.current?.querySelectorAll(`.js-animate-item`);
       if (statItems) {
         gsap.fromTo(
           statItems,
-          { opacity: 0, y: 60, scale: 0.9 },
+          { autoAlpha: 0, y: 60, scale: 0.9 },
           {
-            opacity: 1,
+            autoAlpha: 1,
             y: 0,
             scale: 1,
             duration: 1,
@@ -137,7 +137,7 @@ export default function StatsSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className={styles.statsSection}>
+    <section ref={sectionRef} className={`${styles.statsSection} js-animate`}>
       <div className={styles.container}>
         <div className={styles.header}>
           <span className={styles.subtitle}>The Reality</span>
@@ -150,7 +150,7 @@ export default function StatsSection() {
 
         <div className={styles.grid}>
           {stats.map((stat, index) => (
-            <div key={stat.label} className={styles.statItem}>
+            <div key={stat.label} className={`${styles.statItem} js-animate-item`}>
               <span className={styles.icon} aria-hidden="true">
                 {stat.icon}
               </span>

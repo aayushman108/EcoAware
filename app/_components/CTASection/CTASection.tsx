@@ -23,9 +23,9 @@ export default function CTASection() {
       // Animate content entrance
       gsap.fromTo(
         contentRef.current,
-        { opacity: 0, y: 80, scale: 0.95 },
+        { autoAlpha: 0, y: 80, scale: 0.95 },
         {
-          opacity: 1,
+          autoAlpha: 1,
           y: 0,
           scale: 1,
           duration: 1.2,
@@ -39,7 +39,7 @@ export default function CTASection() {
       );
 
       // Animate floating elements - subtle float
-      gsap.to(`.${styles.floatingIcon}`, {
+      gsap.to(`.js-animate.${styles.floatingIcon}`, {
         y: -30,
         rotation: 15,
         duration: 4,
@@ -58,7 +58,7 @@ export default function CTASection() {
   return (
     <section ref={sectionRef} className={styles.ctaSection}>
       <div className={styles.container}>
-        <div ref={contentRef} className={styles.content}>
+        <div ref={contentRef} className={`${styles.content} js-animate`}>
           <div className={styles.badge}>
             <span className={styles.badgeIcon}>🌱</span>
             <span>Join the Movement</span>
@@ -88,10 +88,10 @@ export default function CTASection() {
 
       {/* Floating decorations */}
       <div className={styles.decorations} aria-hidden="true">
-        <span className={`${styles.floatingIcon} ${styles.icon1}`}>🌿</span>
-        <span className={`${styles.floatingIcon} ${styles.icon2}`}>💚</span>
-        <span className={`${styles.floatingIcon} ${styles.icon3}`}>🌍</span>
-        <span className={`${styles.floatingIcon} ${styles.icon4}`}>🍃</span>
+        <span className={`${styles.floatingIcon} ${styles.icon1} js-animate`}>🌿</span>
+        <span className={`${styles.floatingIcon} ${styles.icon2} js-animate`}>💚</span>
+        <span className={`${styles.floatingIcon} ${styles.icon3} js-animate`}>🌍</span>
+        <span className={`${styles.floatingIcon} ${styles.icon4} js-animate`}>🍃</span>
       </div>
 
       {/* Gradient background */}

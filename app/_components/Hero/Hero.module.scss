@@ -141,40 +141,52 @@
 .leaf1 {
   top: 15%;
   left: 10%;
-  font-size: 5rem;
   transform: rotate(-15deg);
+  @include min-md {
+    font-size: 5rem;
+  }
 }
 
 .leaf2 {
   top: 25%;
   right: 15%;
-  font-size: 4rem;
   transform: rotate(15deg);
+  @include min-md {
+    font-size: 4rem;
+  }
 }
 
 .heart {
   bottom: 30%;
   left: 15%;
-  font-size: 3rem;
+  @include min-md {
+    font-size: 3rem;
+  }
 }
 
 .earth {
   top: 35%;
   right: 8%;
-  font-size: 6rem;
   opacity: 0.4;
+  @include min-md {
+    font-size: 6rem;
+  }
 }
 
 .sun {
   top: 8%;
   right: 30%;
-  font-size: 3rem;
+  @include min-md {
+    font-size: 3rem;
+  }
 }
 
 .water {
   bottom: 25%;
   right: 20%;
-  font-size: 2.5rem;
+  @include min-md {
+    font-size: 2.5rem;
+  }
 }
 
 // Gradient orbs

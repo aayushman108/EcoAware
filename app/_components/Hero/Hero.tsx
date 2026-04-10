@@ -25,10 +25,10 @@ export default function Hero() {
       // Animate background decorations
       tl.fromTo(
         decorRef.current?.querySelectorAll(".decor-item") || [],
-        { scale: 0, opacity: 0 },
+        { scale: 0, autoAlpha: 0 },
         {
           scale: 1,
-          opacity: 1,
+          autoAlpha: 1,
           duration: 1.5,
           stagger: 0.1,
           ease: "back.out(1.2)",
@@ -37,33 +37,45 @@ export default function Hero() {
       );
 
       // Animate headline
-      tl.from(
+      tl.fromTo(
         headlineRef.current,
         {
           y: 100,
-          opacity: 0,
+          autoAlpha: 0,
+        },
+        {
+          y: 0,
+          autoAlpha: 1,
           duration: 1.2,
         },
         0.2,
       );
 
       // Animate subtitle
-      tl.from(
+      tl.fromTo(
         subtitleRef.current,
         {
           y: 60,
-          opacity: 0,
+          autoAlpha: 0,
+        },
+        {
+          y: 0,
+          autoAlpha: 1,
           duration: 1,
         },
         0.4,
       );
 
       // Animate buttons
-      tl.from(
+      tl.fromTo(
         buttonsRef.current?.children || [],
         {
           y: 40,
-          opacity: 0,
+          autoAlpha: 0,
+        },
+        {
+          y: 0,
+          autoAlpha: 1,
           duration: 0.8,
           stagger: 0.1,
         },
@@ -90,20 +102,20 @@ export default function Hero() {
     <section ref={heroRef} className={styles.hero} aria-label="Welcome">
       {/* Background decorations */}
       <div ref={decorRef} className={styles.decorations} aria-hidden="true">
-        <div className={`${styles.decorItem} ${styles.leaf1} decor-item`}>
+        <div className={`${styles.decorItem} ${styles.leaf1} decor-item js-animate`}>
           🌿
         </div>
-        <div className={`${styles.decorItem} ${styles.leaf2} decor-item`}>
+        <div className={`${styles.decorItem} ${styles.leaf2} decor-item js-animate`}>
           🍃
         </div>
-        <div className={`${styles.decorItem} ${styles.heart} decor-item`}>
+        <div className={`${styles.decorItem} ${styles.heart} decor-item js-animate`}>
           💚
         </div>
-        <div className={`${styles.decorItem} ${styles.earth} decor-item`}>
+        <div className={`${styles.decorItem} ${styles.earth} decor-item js-animate`}>
           🌍
         </div>
-        <div className={`${styles.decorItem} ${styles.sun} decor-item`}>☀️</div>
-        <div className={`${styles.decorItem} ${styles.water} decor-item`}>
+        <div className={`${styles.decorItem} ${styles.sun} decor-item js-animate`}>☀️</div>
+        <div className={`${styles.decorItem} ${styles.water} decor-item js-animate`}>
           💧
         </div>
         <div className={styles.gradientOrb1} />
@@ -112,19 +124,19 @@ export default function Hero() {
 
       <div className={styles.container}>
         <div className={styles.content}>
-          <h1 ref={headlineRef} className={styles.headline}>
+          <h1 ref={headlineRef} className={`${styles.headline} js-animate`}>
             <span className={styles.highlightLine}>Conscious Choices</span>
             <span className={styles.normalLine}>for a Healthier You</span>
             <span className={styles.gradientLine}>& a Sustainable Planet</span>
           </h1>
 
-          <p ref={subtitleRef} className={styles.subtitle}>
+          <p ref={subtitleRef} className={`${styles.subtitle} js-animate`}>
             Discover science-backed insights on health, nutrition, and
             environmental sustainability. Together, we can build a brighter,
             greener future.
           </p>
 
-          <div ref={buttonsRef} className={styles.buttons}>
+          <div ref={buttonsRef} className={`${styles.buttons} js-animate`}>
             <Button as="link" href="#features" size="lg">
               Explore Topics
             </Button>

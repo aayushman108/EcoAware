@@ -55,18 +55,18 @@ export default function FeaturesSection() {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       // Animate cards on scroll
-      const cards = cardsRef.current?.querySelectorAll(`.${styles.card}`);
+      const cards = cardsRef.current?.querySelectorAll(`.js-animate`);
 
       if (cards) {
         gsap.fromTo(
           cards,
           {
-            opacity: 0,
+            autoAlpha: 0,
             y: 80,
             scale: 0.9,
           },
           {
-            opacity: 1,
+            autoAlpha: 1,
             y: 0,
             scale: 1,
             duration: 1.2,
@@ -144,7 +144,7 @@ export default function FeaturesSection() {
           {features.map((feature) => (
             <article
               key={feature.id}
-              className={`${styles.card} ${styles[feature.color]}`}
+              className={`${styles.card} ${styles[feature.color]} js-animate`}
             >
               <div className={styles.cardInner}>
                 <div className={styles.iconWrapper}>

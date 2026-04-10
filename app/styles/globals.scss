@@ -259,6 +259,20 @@ body {
   @include sr-only;
 }
 
+// ============================================
+// ANIMATION UTILITIES
+// ============================================
+
+// Only hide if JS is available to prevent flash of unstyled content (FOUC)
+// but still show content to users without JS
+.js {
+  .js-animate,
+  .js-animate-item {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 .text-gradient {
   @include text-gradient($gradient-primary);
 }
