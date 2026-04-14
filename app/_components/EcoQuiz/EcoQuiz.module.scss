@@ -129,6 +129,7 @@
   background: var(--color-surface);
   text-align: left;
   transition: all $transition-base $transition-smooth;
+  font-size: $font-size-sm;
   font-weight: $font-weight-semibold;
   color: var(--color-text);
   display: flex;
