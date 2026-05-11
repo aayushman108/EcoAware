@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌿 EcoAware (Envoware)
 
-## Getting Started
+**EcoAware** (also known as Envoware) is a high-performance, modern web application dedicated to promoting conscious living, environmental sustainability, and personal well-being. Built with cutting-edge technologies, it provides users with insights, interactive tools, and tips for a better tomorrow.
 
-First, run the development server:
+## ✨ Key Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Specialized Content Hubs**:
+  - **Environment & Climate**: Insights into sustainability, conservation, and recycling.
+  - **Nutritious Food**: Guides on organic eating, plant-based diets, and sustainable farming.
+  - **Holistic Health**: Tips for mental well-being, physical fitness, and conscious living.
+- **Interactive Eco Quiz**: A gamified experience to test and improve environmental knowledge.
+- **Daily Eco Tips**: Dynamic, actionable insights for a greener daily routine.
+- **Visual Impact Stats**: Engaging data visualization of environmental trends and impacts.
+- **Premium UI/UX**: Ultra-smooth animations powered by **GSAP** and **SCSS Modules**.
+- **PWA Ready**: Installable as a Progressive Web App for a native-like experience.
+- **SEO Optimized**: Full SEO suite with JSON-LD structured data, dynamic sitemaps, and meta-tag management.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 16+](https://nextjs.org/) (App Router)
+- **Core**: [React 19](https://react.dev/), [TypeScript](https://www.typescriptlang.org/)
+- **Animations**: [GSAP](https://greensock.com/gsap/) with `@gsap/react`
+- **Styling**: [Sass (SCSS)](https://sass-lang.com/) with CSS Modules
+- **Deployment**: [Netlify](https://www.netlify.com/)
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (Latest LTS recommended)
+- npm, yarn, pnpm, or bun
+
+### Installation
+
+1.  Clone the repository:
+
+    ```bash
+    git clone https://github.com/aayushman108/EcoAware.git
+    cd EcoAware
+    ```
+
+2.  Install dependencies:
+
+    ```bash
+    npm install
+    ```
+
+3.  Run the development server:
+    ```bash
+    npm run dev
+    ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌐 Deployment
 
-## Learn More
+The project is configured for seamless deployment on Netlify. A `netlify.toml` file is included for optimized build settings.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built with ❤️ for a greener planet.
