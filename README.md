@@ -2,6 +2,8 @@
 
 **EcoAware** (also known as Envoware) is a high-performance, modern web application dedicated to promoting conscious living, environmental sustainability, and personal well-being. Built with cutting-edge technologies, it provides users with insights, interactive tools, and tips for a better tomorrow.
 
+🔗 **Live Demo:** [envoware.netlify.app](https://envoware.netlify.app)
+
 ## ✨ Key Features
 
 - **Specialized Content Hubs**:
@@ -51,7 +53,6 @@
     ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
 
 ## 🌐 Deployment
 
